@@ -1,0 +1,36 @@
+# Environment variables
+*.env
+
+# MacOS
+.DS_Store
+
+# Node
+node_modules
+
+# Foundry
+packages/contracts/cache/
+packages/contracts/out/
+packages/contracts/broadcast/
+
+# IntelliJ config
+.idea/
+*.iml
+
+# React outputs
+packages/react/www/app.js
+packages/react/www/app.css
+
+# Webapp outputes
+packages/webapp/build
+packages/webapp/src/generated.ts
+
+# next.js
+.next/
+/out/
+next-env.d.ts
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*

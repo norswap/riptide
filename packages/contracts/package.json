@@ -1,0 +1,12 @@
+{
+  "name": "@riptide/contracts",
+  "author": "Grim Rippers",
+  "license": "BSD-3-Clause-Clear",
+  "version": "1.0.0",
+  "files": [
+    "*.sol"
+  ],
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.3"
+  }
+}
