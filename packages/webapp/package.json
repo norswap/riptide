@@ -4,15 +4,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "ethers": "^5.7.2",
+    "@metamask/detect-provider": "^2.0.0",
+    "@metamask/sdk": "^0.2.4",
+    "framer-motion": "^10.12.10",
     "jotai": "^2.0.4",
     "jotai-devtools": "^0.5.3",
     "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^6.11.1",
-    "viem": "^0.3.24",
-    "wagmi": "^1.0.2"
+    "react-tilt": "^1.0.2"
   },
   "devDependencies": {
     "@swc-jotai/debug-label": "^0.0.10",

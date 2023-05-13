@@ -6,10 +6,10 @@ export const Cards = () => {
   const [selected, setSelected] = useState<number>();
 
   return (
-    <div className="flex flex-row">
-      <div className="">
+    <div className="flex flex-row h-screen">
+      <div className="h-100 overflow-y-scroll">
         <table className="table-auto text-left">
-          <thead>
+          <thead className="sticky top-0 bg-white">
             <tr>
               <th>Name</th>
               <th>Qty</th>
@@ -36,7 +36,7 @@ export const Cards = () => {
 
       {selected != null && (
         <div className="w-[800px] h-100 bg-teal-600">
-          <CardDetails {...cardsMock[selected]}></CardDetails>
+          <CardDetails {...{ card: cardsMock[selected], setSelected }}></CardDetails>
         </div>
       )}
     </div>
