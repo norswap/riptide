@@ -20,14 +20,13 @@ packages/contracts/broadcast/
 packages/react/www/app.js
 packages/react/www/app.css
 
-# Webapp outputes
-packages/webapp/build
+# Webapp outputs
+## Wagmi
 packages/webapp/src/generated.ts
-
-# next.js
-.next/
-/out/
-next-env.d.ts
+## Vite
+packages/webapp/dist/
+## Typescript
+tsconfig.tsbuildinfo
 
 # debug
 npm-debug.log*
