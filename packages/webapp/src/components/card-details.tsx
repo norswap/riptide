@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { CardProps } from "src/interfaces/card-props";
 
-export const CardDetails = (card: CardProps) => {
+export const CardDetails = (props: { card: CardProps, setSelected }) => {
+const { card, setSelected } = props;
  const [qty, setQty] = useState(card.quantity);
  const [price, setPrice] = useState(card.price);
 
@@ -20,6 +21,7 @@ export const CardDetails = (card: CardProps) => {
     // Or you can work with it as a plain object:
    
     console.log(form);
+    setSelected(null)
   }
 
   const form = {
@@ -49,7 +51,7 @@ export const CardDetails = (card: CardProps) => {
             onChange={(e) => setPrice(parseFloat(e.target.value))}
           ></input>
         </label>
-        <button type="reset">Cancel</button>
+        <button type="reset" onClick={() => setSelected(null)}>Cancel</button>
         <button type="submit">Submit</button>
       </form>
     </div>

@@ -36,7 +36,7 @@ export const Cards = () => {
 
       {selected != null && (
         <div className="w-[800px] h-100 bg-teal-600">
-          <CardDetails {...cardsMock[selected]}></CardDetails>
+          <CardDetails {...{ card: cardsMock[selected], setSelected }}></CardDetails>
         </div>
       )}
     </div>
