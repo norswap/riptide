@@ -2,7 +2,7 @@
 
 or
 
-## Rationalized Item Pricing & Trading Incentivization for Decentralized Economiesgit 
+## Rationalized Item Pricing & Trading Incentivization for Decentralized Economies
 
 RIPTIDE is a protocol for managing the distribution and inflation of digital assets.
 
