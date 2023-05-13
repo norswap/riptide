@@ -1,44 +1,21 @@
-import { useState } from "react";
 import { cardsMock } from "./cards-mock";
-import { CardDetails } from "../components/card-details";
+import CardTable from "../components/CardTable";
 
 export const Cards = () => {
-  const [selected, setSelected] = useState<number>();
-
   return (
-    <div className="flex flex-row h-screen">
-      <div className="h-100 overflow-y-scroll">
-        <table className="table-auto text-left">
-          <thead className="sticky top-0 bg-white">
-            <tr>
-              <th>Name</th>
-              <th>Qty</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cardsMock.map((card, i) => (
-              <tr
-                className={`cursor-pointer hover:shadow-md shadow-cyan-500/50 ${
-                  selected === i ? "bg-teal-600" : ""
-                }`}
-                onClick={() => setSelected(i)}
-                key={i}
-              >
-                <td className="p-3 whitespace-nowrap">{card.name}</td>
-                <td className="p-3">{card.quantity}</td>
-                <td className="p-3">{card.price}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="mx-auto max-w-4xl">
+      <div className="flex flex-col py-8 gap-y-1">
+        <h1 className="text-2xl">Cards</h1>
+        <p className="text-lg text-white/60">Cards and their stats</p>
       </div>
 
-      {selected != null && (
+      <CardTable cards={cardsMock} />
+
+      {/*       {selected != null && (
         <div className="w-[800px] h-100 bg-teal-600">
-          <CardDetails {...{ card: cardsMock[selected], setSelected }}></CardDetails>
+          <CardDetails {...cardsMock[selected]}></CardDetails>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

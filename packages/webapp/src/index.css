@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-#root {
+body {
+  @apply bg-black text-white;
+}
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -78,3 +81,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+ */

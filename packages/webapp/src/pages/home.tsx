@@ -1,7 +1,7 @@
 import { useMetaMask } from "../hooks/useMetaMask";
 
 export const Home = () => {
-  const { hasProvider, connectMetaMask, wallet } = useMetaMask();
+  const { connectMetaMask, wallet } = useMetaMask();
   return (
     <div>
       <a href="/cards">

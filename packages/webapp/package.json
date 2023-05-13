@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^1.7.14",
+    "@heroicons/react": "^2.0.18",
     "@metamask/detect-provider": "^2.0.0",
     "@metamask/sdk": "^0.2.4",
     "framer-motion": "^10.12.10",
