@@ -7,6 +7,7 @@
     "*.sol"
   ],
   "dependencies": {
-    "@openzeppelin/contracts": "^4.8.3"
+    "@openzeppelin/contracts": "^4.8.3",
+    "@prb/math": "^4.0.0"
   }
 }

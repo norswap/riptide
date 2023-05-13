@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: BSD-3-Clause-Clear
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.19;
 
 import "forge-std/Script.sol";
 import "multicall/Multicall3.sol";
