@@ -11,7 +11,7 @@ setup: init-modules install-frozen
 # terminal. This does not work in all terminal emulators, and might not be the most convenient
 # option for you, so you can also run
 dev:
-	pnpm run-pty % make anvil % make webdev % make deploy % make circuits
+	pnpm run-pty % make anvil % make webdev % make deploy
 .PHONY: dev
 
 # Runs anvil (local EVM node).
@@ -28,11 +28,6 @@ webdev:
 deploy:
 	cd packages/contracts && make deploy
 .PHONY: deploy
-
-# Build the zero-knowledge circuits.
-circuits:
-	cd packages/circuits && make build
-.PHONY: circuits
 
 # ==================================================================================================
 # IMPLEMENTATION DETAILS

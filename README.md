@@ -54,8 +54,6 @@ This will do the following from a single terminal (using run-pty):
   (this chain comes preconfigured in Metamask and other wallets as "Localhost")
 - Run the NextJS dev command (web server + live reload)
 - Deploy the contracts to the local node
-- Build the zk circuits (this make take a while, especially the first time when you'll need to
-   download the 300MB trusted setup file)
 
 After that, you can visit the app at http://localhost:3000/ (if that port is already occupied,
 NextJS might affect another one).
@@ -66,7 +64,6 @@ If your shell doesn't support run-pty, you can run the commands manually in diff
 make anvil
 make webdev
 make deploy
-make circuits
 ```
 
 Note: at least for me, Metamask has a bug that doesn't let the app initiate chain switching when
