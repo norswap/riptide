@@ -1,3 +1,4 @@
 forge-std/=lib/forge-std/src/
 openzeppelin/=lib/openzeppelin/src/
-multicall/=lib/multicall
+multicall/=lib/multicall/
+prb-math/=lib/prb-math/src/
