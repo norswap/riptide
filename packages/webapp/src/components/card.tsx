@@ -1,5 +1,9 @@
-export interface CardProps {}
+import { CardProps } from "src/interfaces/card-props";
 
 export const Card = (props: CardProps) => {
-  return <div className="w-[120px] h-[200px] m-3 p-3 rounded bg-black" />;
+  return (
+    <div className="w-[120px] h-[200px]  bg-slate-200">
+      {props.name}
+    </div>
+  );
 };
