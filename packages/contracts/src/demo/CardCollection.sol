@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 import "openzeppelin/token/ERC721/ERC721.sol";
 import "openzeppelin/access/Ownable.sol";
 
-import "../BoosterMinter.sol";
+import "../BoostedCollection.sol";
 
 enum Rarity {
     COMMON,
@@ -19,7 +19,7 @@ struct CardTypeInfo {
     Rarity rarity;
 }
 
-contract CardCollection is ERC721, Ownable, BoosterMinter {
+contract CardCollection is ERC721, Ownable, BoostedCollection {
 
     uint256 private nextID = 0;
 

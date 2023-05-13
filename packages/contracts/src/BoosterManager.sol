@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 import "openzeppelin/access/Ownable.sol";
 import { UD60x18, ud, log10, ceil, convert } from "prb-math/UD60x18.sol";
 
-import "./BoosterMinter.sol";
+import "./BoostedCollection.sol";
 
 /**
  * The BoosterManager contract forms the core of RIPTIDE, it is responsible for generating booster
@@ -13,9 +13,7 @@ import "./BoosterMinter.sol";
  *
  * The NFTs minted by this contract are called "items". The interface between this contract and
  * a NFT collection (or multiple NFT collections, this is completely abstracted away) is done with
- * the BoosterMinter interface.
- *
- * TODO change name of BoosterMinter
+ * the BoostedCollection interface.
  *
  * Each item has an uint256 `itemID` which is the usual ERC721 token ID.
  *
@@ -27,8 +25,8 @@ import "./BoosterMinter.sol";
  * sequential in the 0-N range, where N is the number of items in the rarity class (configured when
  * creating the booster manager).
  *
- * Both the `rarityID` and the `typeID` are passed to the BoosterMinter.mint function in order to
- * mint the proper item. The BoosterMinter implementation can map these IDs to its own internal
+ * Both the `rarityID` and the `typeID` are passed to the BoostedCollection.mint function in order to
+ * mint the proper item. The BoostedCollection implementation can map these IDs to its own internal
  * system.
  */
 contract BoosterManager is Ownable {
@@ -59,7 +57,7 @@ contract BoosterManager is Ownable {
     uint256 public currentBoosterPrice;
 
     // The contract that mints NFTs contained in boosters.
-    BoosterMinter public boosterMinter;
+    BoostedCollection public boostedConnection;
 
     struct RarityClass {
         // Number of items in the rarity class.
@@ -74,13 +72,13 @@ contract BoosterManager is Ownable {
     RarityClass[] public rarityClasses;
 
     constructor(
-        BoosterMinter boosterMinter_,
+        BoostedCollection boostedCollection_,
         UD60x18 logMultiplier_,
         uint256 targetBaseSupply_,
         uint256 initialBoosterPrice_,
         RarityClass[] memory rarityClasses_)
             Ownable() {
-        boosterMinter = boosterMinter_;
+        boostedConnection = boostedCollection_;
         logMultiplier = logMultiplier_;
         targetBaseSupply = targetBaseSupply_;
         initialBoosterPrice = initialBoosterPrice_;
@@ -136,11 +134,11 @@ contract BoosterManager is Ownable {
 
     // Current booster price.
     function boosterPrice() public view returns(uint256) {
-        if (boosterMinter.totalSupply() < targetBaseSupply)
+        if (boostedConnection.totalSupply() < targetBaseSupply)
             return initialBoosterPrice;
         else {
             // NOTE: this could be tweaked or made configurable
-            uint256 supplyDiff = boosterMinter.totalSupply() - targetBaseSupply;
+            uint256 supplyDiff = boostedConnection.totalSupply() - targetBaseSupply;
             // e.g. if target is 1000, getting to 2000 total supply, would take price to
             // `initial + 10^6 / (3*10^5) = inital + 3.3`, at 3000 it would be `initial + 13.3`
             return initialBoosterPrice + supplyDiff * supplyDiff / 300_000;
@@ -159,7 +157,7 @@ contract BoosterManager is Ownable {
         uint256[] memory items = new uint256[](boosterSize);
         for (uint8 rarityID = 0; rarityID < rarityClasses.length; ++rarityID)
             for (uint256 j = 0; j < rarityClasses[rarityID].itemsPerBooster; ++j)
-                items[i++] = boosterMinter.mint(msg.sender, rarityID, pickItem(rarityID));
+                items[i++] = boostedConnection.mint(msg.sender, rarityID, pickItem(rarityID));
         emit BoosterPurchased(msg.sender, msg.value, items);
     }
 
