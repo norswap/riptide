@@ -166,57 +166,77 @@ contract BoosterManager is Ownable {
     // =============================================================================================
     // DEFINING THE WEIGHTS
 
-    function probabilitiesForRarityClassFromPrices(uint256[][] calldata prices) external view returns(WeightSlot[] memory) {
+    function weightsForRarityFromPrices(uint256[] calldata prices)
+            internal view returns(WeightSlot[] memory) {
+
+        uint256 average = 0;
+        for (uint256 i = 0; i < prices.length; ++i)
+            average += prices[i];
+        average = average / prices.length;
+
+        UD60x18 ONE = ud(1);
+        UD60x18 avg = ud(average);
+        UD60x18[] memory decimalWeights = new UD60x18[](prices.length);
+        UD60x18 totalWeight = ud(0);
+        for (uint256 i = 0; i < prices.length; ++i) {
+            decimalWeights[i] = ONE + logMultiplier * log10(ud(prices[i]) / avg);
+            totalWeight = totalWeight + decimalWeights[i];
+        }
+
+        WeightSlot[] memory rarityWeights = new WeightSlot[](convert(ceil(totalWeight)));
+        uint16 lastTypeID = 0;
+        // TODO check conversion doesn't overflow
+        uint16 remainingWeight = uint16(convert(decimalWeights[lastTypeID] * ud(256)));
+        for (uint256 i = 0; i < rarityWeights.length; ++i) {
+            rarityWeights[i].typeID1 = lastTypeID;
+            if (remainingWeight >= 256) {
+                remainingWeight -= 256;
+                rarityWeights[i].probabilitySplit = 255;
+            } else {
+                rarityWeights[i].probabilitySplit = uint8(remainingWeight - 1); // because it includes 0
+                if (lastTypeID == decimalWeights.length) break;
+                rarityWeights[i].typeID2 = ++lastTypeID;
+                uint8 remainingProbabilityInSlot = 255 - rarityWeights[i].probabilitySplit;
+                remainingWeight = uint16(convert(decimalWeights[lastTypeID] * ud(256))) - remainingProbabilityInSlot;
+            }
+        }
+
+        return rarityWeights;
+    }
+
+    function weightsFromPrices(uint256[][] calldata prices) public view returns(Weights memory) {
         if (prices.length != rarityClasses.length)
             revert("BoosterManager: invalid number of rarity classes");
 
+        Weights memory generatedWeights = Weights(new WeightSlot[][](prices.length));
         for (uint256 rarityID = 0; rarityID < prices.length; ++rarityID) {
             if (prices[rarityID].length != rarityClasses[rarityID].totalItems)
                 revert("BoosterManager: invalid number of items for rarity class");
-
-            // TODO port logic below this loop ... inside the loop — maybe refactor in function
+            generatedWeights.array[rarityID] = weightsForRarityFromPrices(prices[rarityID]);
         }
 
-//        uint256 average = 0;
-//        for (uint256 i = 0; i < prices.length; ++i)
-//            average += prices[i];
-//        average = average / prices.length;
-//
-//        UD60x18 ONE = ud(1);
-//        UD60x18 avg = ud(average);
-//        UD60x18[] memory decimalWeights = new UD60x18[](prices.length);
-//        UD60x18 totalWeight = ud(0);
-//        for (uint256 i = 0; i < prices.length; ++i) {
-//            decimalWeights[i] = ONE + logMultiplier * log10(ud(prices[i]) / avg);
-//            totalWeight = totalWeight + decimalWeights[i];
-//        }
-//
-//        WeightSlot[] memory result = new WeightSlot[](convert(ceil(totalWeight)));
-//        uint16 lastTypeID = 0;
-//        // TODO check conversion doesn't overflow
-//        uint16 remainingWeight = uint16(convert(decimalWeights[lastTypeID] * ud(256)));
-//        for (uint256 i = 0; i < result.length; ++i) {
-//            result[i].typeID1 = lastTypeID;
-//            if (remainingWeight >= 256) {
-//                remainingWeight -= 256;
-//                result[i].probabilitySplit = 255;
-//            } else {
-//                result[i].probabilitySplit = uint8(remainingWeight - 1); // because it includes 0
-//                if (lastTypeID == decimalWeights.length) break;
-//                result[i].typeID2 = ++lastTypeID;
-//                uint8 remainingProbabilityInSlot = 255 - result[i].probabilitySplit;
-//                remainingWeight = uint16(convert(decimalWeights[lastTypeID] * ud(256))) - remainingProbabilityInSlot;
-//            }
-//        }
-//
-//        return result;
-
-        return new WeightSlot[](0);
+        return generatedWeights;
     }
 
-    function assertWeights(Weights calldata weights_) external onlyOwner {
+    function assertWeights(Weights calldata weights_) public onlyOwner {
         // TODO UMA integration
+        if (weights.array.length != rarityClasses.length)
+            revert("BoosterManager: invalid number of rarity classes");
         weights = weights_;
+    }
+
+    function assertWeightsFromPrices(uint256[][] calldata prices) external onlyOwner {
+        // TODO UMA integration
+        if (prices.length != rarityClasses.length)
+            revert("BoosterManager: invalid number of rarity classes");
+        WeightSlot[][] memory generatedWeights = weightsFromPrices(prices).array;
+        for (uint256 i = 0; i < prices.length; ++i) {
+            if (prices[i].length != rarityClasses[i].totalItems)
+                revert("BoosterManager: invalid number of items for rarity class");
+            for (uint256 j = 0; j < prices[i].length; ++j)
+                weights.array[i][j] = generatedWeights[i][j];
+        }
+
     }
 
     // =============================================================================================
