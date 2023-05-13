@@ -28,10 +28,10 @@ contract CardCollection is ERC721, Ownable, BoostedCollection {
 
     CardTypeInfo[] public cardTypeInfos;
     mapping(uint256 cardID => uint16 cardTypeID) public cardTypes;
-    uint8[3] public numCardsPerRarity;
+    uint16[3] public numCardsPerRarity;
 
     constructor(
-        uint8[3] memory numCardsPerRarity_,
+        uint16[3] memory numCardsPerRarity_,
         CardTypeInfo[] memory cardTypeInfos_)
             ERC721("Cards", "CARD")
             Ownable() {

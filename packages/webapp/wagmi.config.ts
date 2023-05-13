@@ -9,7 +9,10 @@ export default defineConfig({
     foundry({
       project: "../contracts",
       include: [
-        "MyContract.sol/**/*.json"
+        "CardCollection.sol/**/*.json",
+        "BoosterManager.sol/**/*.json",
+        "AssertionEngine.sol/**/*.json",
+        "AssertionManager.sol/**/*.json",
       ]
     }),
   ],

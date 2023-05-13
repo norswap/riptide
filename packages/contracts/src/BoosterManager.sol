@@ -4,6 +4,7 @@ pragma solidity ^0.8.19;
 import "openzeppelin/access/Ownable.sol";
 import { UD60x18, ud, log10, ceil, convert } from "prb-math/UD60x18.sol";
 
+import "./AssertionManager.sol";
 import "./BoostedCollection.sol";
 
 /**
@@ -59,6 +60,10 @@ contract BoosterManager is Ownable {
     // The contract that mints NFTs contained in boosters.
     BoostedCollection public boostedConnection;
 
+    // The contract that manages price assertions and is allowed to update the weights of items
+    // based on these prices.
+    AssertionManager public assertionManager;
+
     struct RarityClass {
         // Number of items in the rarity class.
         uint16 totalItems;
@@ -93,6 +98,12 @@ contract BoosterManager is Ownable {
             revert("BoosterManager: totalNumCardTypes cannot be zero");
         boosterSize = boosterSize_;
         totalNumCardTypes = totalNumCardTypes_;
+    }
+
+    function setAssertionManager(AssertionManager assertionManager_) external onlyOwner {
+        if (address(assertionManager) != address(0))
+            revert("BoosterManager: assertionManager already set");
+        assertionManager = assertionManager_;
     }
 
     // =============================================================================================
@@ -237,15 +248,20 @@ contract BoosterManager is Ownable {
         return generatedWeights;
     }
 
-    function assertWeights(Weights calldata weights_) public onlyOwner {
-        // TODO UMA integration
-        if (weights.array.length != rarityClasses.length)
+    // Called by the assertion manager to validate that the number of prices is correct.
+    function validatePricesShape(uint256[][] calldata prices) external view {
+        if (prices.length != rarityClasses.length)
             revert("BoosterManager: invalid number of rarity classes");
-        weights = weights_;
+        for (uint256 rarityID = 0; rarityID < prices.length; ++rarityID)
+            if (prices[rarityID].length != rarityClasses[rarityID].totalItems)
+                revert("BoosterManager: invalid number of items for rarity class");
     }
 
-    function assertWeightsFromPrices(uint256[][] calldata prices) external onlyOwner {
-        // TODO UMA integration
+    // Called by the assertion manager to set the weights based on the prices.
+    function setWeightsFromPrices(uint256[][] calldata prices) external onlyOwner {
+        if (msg.sender != address(assertionManager))
+            revert("BoosterManager: only assertion manager can set weights");
+
         if (prices.length != rarityClasses.length)
             revert("BoosterManager: invalid number of rarity classes");
         WeightSlot[][] memory generatedWeights = weightsFromPrices(prices).array;
@@ -255,7 +271,6 @@ contract BoosterManager is Ownable {
             for (uint256 j = 0; j < prices[i].length; ++j)
                 weights.array[i][j] = generatedWeights[i][j];
         }
-
     }
 
     // =============================================================================================
