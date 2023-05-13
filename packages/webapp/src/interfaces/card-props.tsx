@@ -1,5 +1,5 @@
 export interface CardProps {
-  key: string;
+  id: string;
   name: string;
   quantity: number;
   price: number;

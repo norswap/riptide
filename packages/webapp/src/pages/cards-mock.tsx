@@ -2,7 +2,7 @@ import { CardProps } from "src/interfaces/card-props";
 
 export const cardsMock: CardProps[] = [
   {
-    key: "0x3b268a971d34ee62c5836fdd0c69899c768bacd1",
+    id: "0x3b268a971d34ee62c5836fdd0c69899c768bacd1",
     name: "Bateleur eagle",
     quantity: 2110,
     price: 6,
@@ -13,7 +13,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3950,
   },
   {
-    key: "0x5305c14ab00325e7e1ceef538d5079ab237af443",
+    id: "0x5305c14ab00325e7e1ceef538d5079ab237af443",
     name: "Scaly-breasted lorikeet",
     quantity: 3250,
     price: 94,
@@ -24,7 +24,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1358,
   },
   {
-    key: "0x7622a8bc847cb5f62505b51540e6f8f35c79ca7b",
+    id: "0x7622a8bc847cb5f62505b51540e6f8f35c79ca7b",
     name: "Curlew, black",
     quantity: 962,
     price: 82,
@@ -35,7 +35,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3495,
   },
   {
-    key: "0x632c254801df060fca6cd78dfa2b7de7b7e41400",
+    id: "0x632c254801df060fca6cd78dfa2b7de7b7e41400",
     name: "Turtle, snake-necked",
     quantity: 490,
     price: 26,
@@ -46,7 +46,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2110,
   },
   {
-    key: "0xe8c68fba7931b2e69784565fb2e3c0c9b8197d7e",
+    id: "0xe8c68fba7931b2e69784565fb2e3c0c9b8197d7e",
     name: "North American beaver",
     quantity: 2983,
     price: 29,
@@ -57,7 +57,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1010,
   },
   {
-    key: "0x4b0ca10565edd88e78f471a85207fc3a1cca60ac",
+    id: "0x4b0ca10565edd88e78f471a85207fc3a1cca60ac",
     name: "Parakeet, rose-ringed",
     quantity: 3506,
     price: 87,
@@ -68,7 +68,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2193,
   },
   {
-    key: "0x2a1faf0d50e6e19bdac5b769930006813bbee337",
+    id: "0x2a1faf0d50e6e19bdac5b769930006813bbee337",
     name: "Gecko (unidentified)",
     quantity: 66,
     price: 49,
@@ -79,7 +79,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3062,
   },
   {
-    key: "0x3f3df17567c8b0f1edbc9cb84acadff9fb53b0e3",
+    id: "0x3f3df17567c8b0f1edbc9cb84acadff9fb53b0e3",
     name: "Jaguar",
     quantity: 1996,
     price: 7,
@@ -90,7 +90,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1130,
   },
   {
-    key: "0x6aa7eea48f99cf6af44efe8df26e45bfe2ce028d",
+    id: "0x6aa7eea48f99cf6af44efe8df26e45bfe2ce028d",
     name: "Tropical buckeye butterfly",
     quantity: 1279,
     price: 22,
@@ -101,7 +101,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 176,
   },
   {
-    key: "0x262f24afb4c48f5ea6a8d582bd0e95e3678a8d58",
+    id: "0x262f24afb4c48f5ea6a8d582bd0e95e3678a8d58",
     name: "Tern, white-winged black",
     quantity: 2033,
     price: 9,
@@ -112,7 +112,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1186,
   },
   {
-    key: "0x352ce6ae26d451787465c6372651d2d945997cca",
+    id: "0x352ce6ae26d451787465c6372651d2d945997cca",
     name: "Partridge, coqui",
     quantity: 3961,
     price: 7,
@@ -123,7 +123,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4483,
   },
   {
-    key: "0x58eef8318a3d120f1a0eb20bbe52f490b29bca3c",
+    id: "0x58eef8318a3d120f1a0eb20bbe52f490b29bca3c",
     name: "Currasow (unidentified)",
     quantity: 312,
     price: 42,
@@ -134,7 +134,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1233,
   },
   {
-    key: "0x66ec9e94769684dff7278a27b7a028a535eae49f",
+    id: "0x66ec9e94769684dff7278a27b7a028a535eae49f",
     name: "Frogmouth, tawny",
     quantity: 654,
     price: 86,
@@ -145,7 +145,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4464,
   },
   {
-    key: "0x9c22b3dec931f626dfda0d92a91773c432db7b26",
+    id: "0x9c22b3dec931f626dfda0d92a91773c432db7b26",
     name: "Stork, painted",
     quantity: 513,
     price: 91,
@@ -156,7 +156,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1256,
   },
   {
-    key: "0xe12f54ec553c604594d6cca76cb516650e249334",
+    id: "0xe12f54ec553c604594d6cca76cb516650e249334",
     name: "Bustard, denham's",
     quantity: 4998,
     price: 77,
@@ -167,7 +167,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1886,
   },
   {
-    key: "0x15b21fab98629e1f213fe08d9728f6bb2374907a",
+    id: "0x15b21fab98629e1f213fe08d9728f6bb2374907a",
     name: "Tamandua, southern",
     quantity: 1136,
     price: 15,
@@ -178,7 +178,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4900,
   },
   {
-    key: "0xd72901663bd9789ef2dfacfbddaea3218c8819a6",
+    id: "0xd72901663bd9789ef2dfacfbddaea3218c8819a6",
     name: "Seal, common",
     quantity: 1867,
     price: 23,
@@ -189,7 +189,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 17,
   },
   {
-    key: "0xff5820c9411f8418d1f33a14101f9cd759b478d9",
+    id: "0xff5820c9411f8418d1f33a14101f9cd759b478d9",
     name: "White spoonbill",
     quantity: 4292,
     price: 1,
@@ -200,7 +200,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3065,
   },
   {
-    key: "0xf848e85d189501cc28803e5265a8dfc83949fccc",
+    id: "0xf848e85d189501cc28803e5265a8dfc83949fccc",
     name: "Caracara, yellow-headed",
     quantity: 340,
     price: 25,
@@ -211,7 +211,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 147,
   },
   {
-    key: "0x8510d1ecf4e870b44c4731feca51e53974b829d3",
+    id: "0x8510d1ecf4e870b44c4731feca51e53974b829d3",
     name: "Ferret, black-footed",
     quantity: 2739,
     price: 19,
@@ -222,7 +222,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3769,
   },
   {
-    key: "0x7dea54c071acc28ec133a0ad9f99a3e097df63bd",
+    id: "0x7dea54c071acc28ec133a0ad9f99a3e097df63bd",
     name: "Toddy cat",
     quantity: 4693,
     price: 72,
@@ -233,7 +233,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1118,
   },
   {
-    key: "0x438ee19db7f5cf5be8343beff45c53560e5e8fdd",
+    id: "0x438ee19db7f5cf5be8343beff45c53560e5e8fdd",
     name: "Crested porcupine",
     quantity: 824,
     price: 84,
@@ -244,7 +244,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3695,
   },
   {
-    key: "0x8dbc9e1062014428493607b9dd1ba498c62d92cc",
+    id: "0x8dbc9e1062014428493607b9dd1ba498c62d92cc",
     name: "White-winged tern",
     quantity: 2975,
     price: 32,
@@ -255,7 +255,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4751,
   },
   {
-    key: "0xc5fc32eaa4150c358856474a654d97c0d2d635f6",
+    id: "0xc5fc32eaa4150c358856474a654d97c0d2d635f6",
     name: "White-eye, pale",
     quantity: 4210,
     price: 65,
@@ -266,7 +266,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4002,
   },
   {
-    key: "0x1416f3ce05b14469d46d148efff6e603061d6316",
+    id: "0x1416f3ce05b14469d46d148efff6e603061d6316",
     name: "Barasingha deer",
     quantity: 2386,
     price: 56,
@@ -277,7 +277,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4794,
   },
   {
-    key: "0x9ef2e8b343c78650a1c5b0279500211b3a27147b",
+    id: "0x9ef2e8b343c78650a1c5b0279500211b3a27147b",
     name: "Moose",
     quantity: 3607,
     price: 94,
@@ -288,7 +288,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 533,
   },
   {
-    key: "0xcb202899bb0958e56375b458188ad6a22c7321f2",
+    id: "0xcb202899bb0958e56375b458188ad6a22c7321f2",
     name: "Rhesus macaque",
     quantity: 2592,
     price: 3,
@@ -299,7 +299,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4538,
   },
   {
-    key: "0x456a7d704d3ff61034f5346a7a0f8e9a46605e1f",
+    id: "0x456a7d704d3ff61034f5346a7a0f8e9a46605e1f",
     name: "Dolphin, striped",
     quantity: 4841,
     price: 40,
@@ -310,7 +310,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1466,
   },
   {
-    key: "0x183952dd868e40a06052a29bf71a775327f9b4ae",
+    id: "0x183952dd868e40a06052a29bf71a775327f9b4ae",
     name: "Heron, grey",
     quantity: 1702,
     price: 38,
@@ -321,7 +321,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3885,
   },
   {
-    key: "0xf1408e547f4a0ccdd5a1ae3d2b542a4a50c6bfa3",
+    id: "0xf1408e547f4a0ccdd5a1ae3d2b542a4a50c6bfa3",
     name: "Colobus, black and white",
     quantity: 4979,
     price: 3,
@@ -332,7 +332,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3992,
   },
   {
-    key: "0xf1ba7cf54d0ef5ffe158006e686d42ed6b5818c4",
+    id: "0xf1ba7cf54d0ef5ffe158006e686d42ed6b5818c4",
     name: "Striated heron",
     quantity: 2591,
     price: 64,
@@ -343,7 +343,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1435,
   },
   {
-    key: "0x960a23ab8717757b70bdc3db1c3e5acb3d0c4ba6",
+    id: "0x960a23ab8717757b70bdc3db1c3e5acb3d0c4ba6",
     name: "Rainbow lory",
     quantity: 2143,
     price: 67,
@@ -354,7 +354,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3058,
   },
   {
-    key: "0x59509fa307b8436aeb6207e0c8358cc1e8e6e3cc",
+    id: "0x59509fa307b8436aeb6207e0c8358cc1e8e6e3cc",
     name: "Little brown bat",
     quantity: 1670,
     price: 48,
@@ -365,7 +365,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4608,
   },
   {
-    key: "0x2b16d943938033c810ad23ae668f2578725f20fc",
+    id: "0x2b16d943938033c810ad23ae668f2578725f20fc",
     name: "King vulture",
     quantity: 3472,
     price: 44,
@@ -376,7 +376,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 443,
   },
   {
-    key: "0x58f7755b9a0c48715e243b716b566ac804452a72",
+    id: "0x58f7755b9a0c48715e243b716b566ac804452a72",
     name: "Wombat, common",
     quantity: 4735,
     price: 65,
@@ -387,7 +387,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3741,
   },
   {
-    key: "0x9690ecae06d21c462d1d019fca7b0b3ef14861c2",
+    id: "0x9690ecae06d21c462d1d019fca7b0b3ef14861c2",
     name: "Phalarope, red-necked",
     quantity: 2685,
     price: 37,
@@ -398,7 +398,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1940,
   },
   {
-    key: "0xfe67d0520e6b98a021b285f8dd4d07e073bc638a",
+    id: "0xfe67d0520e6b98a021b285f8dd4d07e073bc638a",
     name: "Waterbuck, defassa",
     quantity: 3236,
     price: 15,
@@ -409,7 +409,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1793,
   },
   {
-    key: "0xd7dc3f026ca673a8a24bf8c77b63e3ea6ebd4fa7",
+    id: "0xd7dc3f026ca673a8a24bf8c77b63e3ea6ebd4fa7",
     name: "Laughing dove",
     quantity: 2715,
     price: 77,
@@ -420,7 +420,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2764,
   },
   {
-    key: "0xf5d6c7d52bf880b0e353f6cb5ba2c65dbf13edc8",
+    id: "0xf5d6c7d52bf880b0e353f6cb5ba2c65dbf13edc8",
     name: "Squirrel, uinta ground",
     quantity: 4293,
     price: 99,
@@ -431,7 +431,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2352,
   },
   {
-    key: "0x7aebe47352f01beda5f2b1d95cd727e653136c44",
+    id: "0x7aebe47352f01beda5f2b1d95cd727e653136c44",
     name: "Lizard, desert spiny",
     quantity: 1565,
     price: 12,
@@ -442,7 +442,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 343,
   },
   {
-    key: "0x40d85eabb903aae6e2be3fe1e5bd98957072fc49",
+    id: "0x40d85eabb903aae6e2be3fe1e5bd98957072fc49",
     name: "Turtle (unidentified)",
     quantity: 936,
     price: 57,
@@ -453,7 +453,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2269,
   },
   {
-    key: "0x9594a16ec7887e3762a251be350108553eb6b0a5",
+    id: "0x9594a16ec7887e3762a251be350108553eb6b0a5",
     name: "Roller, lilac-breasted",
     quantity: 4074,
     price: 28,
@@ -464,7 +464,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 557,
   },
   {
-    key: "0x6cbe3bf03b4c366a54a602f6f52c48cb5ea91d9e",
+    id: "0x6cbe3bf03b4c366a54a602f6f52c48cb5ea91d9e",
     name: "Pintail, white-cheeked",
     quantity: 993,
     price: 94,
@@ -475,7 +475,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4600,
   },
   {
-    key: "0x8e78dc617d9156466ded1c03fa6ed9ff0371df79",
+    id: "0x8e78dc617d9156466ded1c03fa6ed9ff0371df79",
     name: "Galapagos mockingbird",
     quantity: 360,
     price: 93,
@@ -486,7 +486,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1562,
   },
   {
-    key: "0x0153e567bc7b72dc178a6aa896db5af27fb0a4bd",
+    id: "0x0153e567bc7b72dc178a6aa896db5af27fb0a4bd",
     name: "Leopard, indian",
     quantity: 2320,
     price: 19,
@@ -497,7 +497,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2629,
   },
   {
-    key: "0xd8cdd87c1df31295fd0c8bd23441f3d6ab08fddc",
+    id: "0xd8cdd87c1df31295fd0c8bd23441f3d6ab08fddc",
     name: "Manatee",
     quantity: 1417,
     price: 40,
@@ -508,7 +508,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2823,
   },
   {
-    key: "0x215fa59be7a94e0544a66ed4794a07b423d5e757",
+    id: "0x215fa59be7a94e0544a66ed4794a07b423d5e757",
     name: "Common brushtail possum",
     quantity: 3886,
     price: 46,
@@ -519,7 +519,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2782,
   },
   {
-    key: "0x6e7b28b904b4e21b9d8b6fe23c5152deeb6a68e2",
+    id: "0x6e7b28b904b4e21b9d8b6fe23c5152deeb6a68e2",
     name: "Snake-necked turtle",
     quantity: 326,
     price: 15,
@@ -530,7 +530,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1328,
   },
   {
-    key: "0x93907a60234f0395ff39bb754037646c3ab7370a",
+    id: "0x93907a60234f0395ff39bb754037646c3ab7370a",
     name: "Waved albatross",
     quantity: 3779,
     price: 5,
@@ -541,7 +541,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1129,
   },
   {
-    key: "0x0de4a6bf277c6280bffc9c90d347d2e990f9fe55",
+    id: "0x0de4a6bf277c6280bffc9c90d347d2e990f9fe55",
     name: "Bustard, stanley",
     quantity: 2951,
     price: 82,
@@ -552,7 +552,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4368,
   },
   {
-    key: "0xa723e9aaa4d951aa4c2e8f8893408a233b91cdb6",
+    id: "0xa723e9aaa4d951aa4c2e8f8893408a233b91cdb6",
     name: "Greater rhea",
     quantity: 3418,
     price: 52,
@@ -563,7 +563,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 264,
   },
   {
-    key: "0x974b6485a676b2b0fffbc40700f7920a5a010b69",
+    id: "0x974b6485a676b2b0fffbc40700f7920a5a010b69",
     name: "Bengal vulture",
     quantity: 4048,
     price: 32,
@@ -574,7 +574,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4130,
   },
   {
-    key: "0x3db8cd628ba6099d308ff0ca70ca334290812088",
+    id: "0x3db8cd628ba6099d308ff0ca70ca334290812088",
     name: "Dragon, western bearded",
     quantity: 2348,
     price: 82,
@@ -585,7 +585,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4208,
   },
   {
-    key: "0x704a01279c2d9b9fb520113d3bf08a5e80ffd2aa",
+    id: "0x704a01279c2d9b9fb520113d3bf08a5e80ffd2aa",
     name: "Eurasian beaver",
     quantity: 1088,
     price: 28,
@@ -596,7 +596,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1203,
   },
   {
-    key: "0x834fe88c0daf3f065dd18624b94693a1ba52f848",
+    id: "0x834fe88c0daf3f065dd18624b94693a1ba52f848",
     name: "Pygmy possum",
     quantity: 3015,
     price: 1,
@@ -607,7 +607,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 885,
   },
   {
-    key: "0xa80ce5dfebc656054675997bf0d6b885eb0e86cb",
+    id: "0xa80ce5dfebc656054675997bf0d6b885eb0e86cb",
     name: "Asiatic jackal",
     quantity: 4962,
     price: 99,
@@ -618,7 +618,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2926,
   },
   {
-    key: "0xff3566852dd4a4dea090cc10af875fe8116257e0",
+    id: "0xff3566852dd4a4dea090cc10af875fe8116257e0",
     name: "Dolphin, common",
     quantity: 4684,
     price: 81,
@@ -629,7 +629,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3966,
   },
   {
-    key: "0xa8bf732f7f800b6e6a070df43c13ee868aab9456",
+    id: "0xa8bf732f7f800b6e6a070df43c13ee868aab9456",
     name: "Bald eagle",
     quantity: 3751,
     price: 18,
@@ -640,7 +640,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3499,
   },
   {
-    key: "0x7f698f307f320e098eada131b38dd29720a844fe",
+    id: "0x7f698f307f320e098eada131b38dd29720a844fe",
     name: "South African hedgehog",
     quantity: 2144,
     price: 26,
@@ -651,7 +651,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3518,
   },
   {
-    key: "0xfbc828c50c3ddb5af8e387acccd10191122b36f8",
+    id: "0xfbc828c50c3ddb5af8e387acccd10191122b36f8",
     name: "Western palm tanager (unidentified)",
     quantity: 4678,
     price: 16,
@@ -662,7 +662,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 366,
   },
   {
-    key: "0x8ad57d98b633afcabe958fac29fb1afbab97071e",
+    id: "0x8ad57d98b633afcabe958fac29fb1afbab97071e",
     name: "Long-tailed skua",
     quantity: 3787,
     price: 42,
@@ -673,7 +673,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3050,
   },
   {
-    key: "0x284b4cacb765caad2380f4c8e0fef8c587ab8fba",
+    id: "0x284b4cacb765caad2380f4c8e0fef8c587ab8fba",
     name: "Waxbill, violet-eared",
     quantity: 3386,
     price: 70,
@@ -684,7 +684,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2344,
   },
   {
-    key: "0x6e10998f8bb9f15531698c947cb47717bda289f2",
+    id: "0x6e10998f8bb9f15531698c947cb47717bda289f2",
     name: "Egyptian goose",
     quantity: 808,
     price: 22,
@@ -695,7 +695,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4102,
   },
   {
-    key: "0x981542360a662646f1bd931dfe83d8d0c57588d7",
+    id: "0x981542360a662646f1bd931dfe83d8d0c57588d7",
     name: "Agama lizard (unidentified)",
     quantity: 3919,
     price: 22,
@@ -706,7 +706,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2433,
   },
   {
-    key: "0x843f6c8e20a66bb46bcf36a83d9c63d39c79fbc8",
+    id: "0x843f6c8e20a66bb46bcf36a83d9c63d39c79fbc8",
     name: "Slender loris",
     quantity: 3166,
     price: 31,
@@ -717,7 +717,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4151,
   },
   {
-    key: "0x77af1384e14e071dfe8b87e949844023fc5f1e44",
+    id: "0x77af1384e14e071dfe8b87e949844023fc5f1e44",
     name: "Eastern fox squirrel",
     quantity: 1550,
     price: 7,
@@ -728,7 +728,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2306,
   },
   {
-    key: "0xde2724c82f25fea1af1100a2802ad0459e5e4c30",
+    id: "0xde2724c82f25fea1af1100a2802ad0459e5e4c30",
     name: "Darter, african",
     quantity: 3662,
     price: 73,
@@ -739,7 +739,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3307,
   },
   {
-    key: "0xca45aadc64eef982952603574f4ed747b1930253",
+    id: "0xca45aadc64eef982952603574f4ed747b1930253",
     name: "Snow goose",
     quantity: 307,
     price: 79,
@@ -750,7 +750,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4716,
   },
   {
-    key: "0xa6edee80462c7786b39daa9625a26604b8e39314",
+    id: "0xa6edee80462c7786b39daa9625a26604b8e39314",
     name: "Antelope ground squirrel",
     quantity: 3340,
     price: 29,
@@ -761,7 +761,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4934,
   },
   {
-    key: "0xfdf6b0b89e4a14c954189fcb18e1c0b7c5414aaf",
+    id: "0xfdf6b0b89e4a14c954189fcb18e1c0b7c5414aaf",
     name: "Blue and gold macaw",
     quantity: 4640,
     price: 59,
@@ -772,7 +772,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4664,
   },
   {
-    key: "0xb1fe1868d8cc4f3721241849eb2b81dfbd6838d4",
+    id: "0xb1fe1868d8cc4f3721241849eb2b81dfbd6838d4",
     name: "Pale white-eye",
     quantity: 4599,
     price: 9,
@@ -783,7 +783,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3117,
   },
   {
-    key: "0x189977d179b28a6136d3f939bbf826b03c8abb7e",
+    id: "0x189977d179b28a6136d3f939bbf826b03c8abb7e",
     name: "Nelson ground squirrel",
     quantity: 2945,
     price: 75,
@@ -794,7 +794,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4274,
   },
   {
-    key: "0xcf4746a3b91da4118f38a2090468b3e7160afa59",
+    id: "0xcf4746a3b91da4118f38a2090468b3e7160afa59",
     name: "Francolin, coqui",
     quantity: 4606,
     price: 22,
@@ -805,7 +805,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 94,
   },
   {
-    key: "0xfed0e29f5e44592e51224e5c1d64d497ff6a93df",
+    id: "0xfed0e29f5e44592e51224e5c1d64d497ff6a93df",
     name: "Rabbit, eastern cottontail",
     quantity: 3832,
     price: 70,
@@ -816,7 +816,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1078,
   },
   {
-    key: "0x76390568a6fa0dd3f3f4ec11a32cd2f83b0cc76f",
+    id: "0x76390568a6fa0dd3f3f4ec11a32cd2f83b0cc76f",
     name: "Turtle, long-necked",
     quantity: 3735,
     price: 66,
@@ -827,7 +827,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4376,
   },
   {
-    key: "0x9e3e0c452efa4fdde6cf76cc227811ccc032b30c",
+    id: "0x9e3e0c452efa4fdde6cf76cc227811ccc032b30c",
     name: "North American red fox",
     quantity: 2575,
     price: 96,
@@ -838,7 +838,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3610,
   },
   {
-    key: "0xcc88c3c2ff07177efaa02e53d11ee4d88e5729b1",
+    id: "0xcc88c3c2ff07177efaa02e53d11ee4d88e5729b1",
     name: "Otter, north american river",
     quantity: 3713,
     price: 61,
@@ -849,7 +849,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2492,
   },
   {
-    key: "0xccd17c847b81e85046963b911a4964b53d1313ec",
+    id: "0xccd17c847b81e85046963b911a4964b53d1313ec",
     name: "Crow, american",
     quantity: 2539,
     price: 32,
@@ -860,7 +860,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2658,
   },
   {
-    key: "0xab0e8efb28b0b4a321c78f8f665a282f7b3ff5c4",
+    id: "0xab0e8efb28b0b4a321c78f8f665a282f7b3ff5c4",
     name: "Galapagos albatross",
     quantity: 2790,
     price: 76,
@@ -871,7 +871,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2894,
   },
   {
-    key: "0xf4eb67fa4aad7e8108bcedf3885968656b819f90",
+    id: "0xf4eb67fa4aad7e8108bcedf3885968656b819f90",
     name: "Chital",
     quantity: 632,
     price: 80,
@@ -882,7 +882,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3452,
   },
   {
-    key: "0x8ccc665a5324deb10431fa758fe78820bc400b47",
+    id: "0x8ccc665a5324deb10431fa758fe78820bc400b47",
     name: "African lynx",
     quantity: 4981,
     price: 33,
@@ -893,7 +893,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2007,
   },
   {
-    key: "0xa4a703c000c45ca27a848e74343c1978d3ed2386",
+    id: "0xa4a703c000c45ca27a848e74343c1978d3ed2386",
     name: "Grebe, little",
     quantity: 4434,
     price: 68,
@@ -904,7 +904,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4091,
   },
   {
-    key: "0x19f296fc06a3c093ba429c511522c984b1aacbe5",
+    id: "0x19f296fc06a3c093ba429c511522c984b1aacbe5",
     name: "Puma, south american",
     quantity: 3970,
     price: 32,
@@ -915,7 +915,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1427,
   },
   {
-    key: "0xd00fc0f73f7d9f15f7d7e905382ff3c6f1ff40ed",
+    id: "0xd00fc0f73f7d9f15f7d7e905382ff3c6f1ff40ed",
     name: "Pintail, bahama",
     quantity: 4518,
     price: 15,
@@ -926,7 +926,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1731,
   },
   {
-    key: "0x22872886449f3f2b565902bf5b316deb74507927",
+    id: "0x22872886449f3f2b565902bf5b316deb74507927",
     name: "Ring dove",
     quantity: 2071,
     price: 52,
@@ -937,7 +937,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 847,
   },
   {
-    key: "0xec77a3af5cc7ea1ee1887aa01ede7693613ead4e",
+    id: "0xec77a3af5cc7ea1ee1887aa01ede7693613ead4e",
     name: "Indian red admiral",
     quantity: 355,
     price: 87,
@@ -948,7 +948,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1355,
   },
   {
-    key: "0x59bf9a01e9f771d838930fe535539d0055961f37",
+    id: "0x59bf9a01e9f771d838930fe535539d0055961f37",
     name: "Wallaby, dama",
     quantity: 2730,
     price: 49,
@@ -959,7 +959,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2304,
   },
   {
-    key: "0xeedd4d94520d911ca279545b447f0a2f56c45bae",
+    id: "0xeedd4d94520d911ca279545b447f0a2f56c45bae",
     name: "Rainbow lory",
     quantity: 4473,
     price: 54,
@@ -970,7 +970,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3288,
   },
   {
-    key: "0x2a521f01ce631e819d68a130f214569b373f153e",
+    id: "0x2a521f01ce631e819d68a130f214569b373f153e",
     name: "Little brown dove",
     quantity: 1079,
     price: 10,
@@ -981,7 +981,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4157,
   },
   {
-    key: "0xac7dc2962100bdcc1a2e6acf036b84cd37939f91",
+    id: "0xac7dc2962100bdcc1a2e6acf036b84cd37939f91",
     name: "Australian magpie",
     quantity: 4630,
     price: 8,
@@ -992,7 +992,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 229,
   },
   {
-    key: "0xf799c98bcb2b5050ba65b16c0e5e216a002acae0",
+    id: "0xf799c98bcb2b5050ba65b16c0e5e216a002acae0",
     name: "Turaco, violet-crested",
     quantity: 4680,
     price: 31,
@@ -1003,7 +1003,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1993,
   },
   {
-    key: "0x40dc2761e289837421886ca936c690f72b331cc8",
+    id: "0x40dc2761e289837421886ca936c690f72b331cc8",
     name: "Cat, tiger",
     quantity: 4727,
     price: 44,
@@ -1014,7 +1014,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 1862,
   },
   {
-    key: "0x2a2a3b8ef0801c3ecfdc01d88afc3bfebcb816f2",
+    id: "0x2a2a3b8ef0801c3ecfdc01d88afc3bfebcb816f2",
     name: "Bee-eater, carmine",
     quantity: 1155,
     price: 95,
@@ -1025,7 +1025,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 610,
   },
   {
-    key: "0x9cdd7f596e747e9d8f29e799b439dc1ffddb8ad4",
+    id: "0x9cdd7f596e747e9d8f29e799b439dc1ffddb8ad4",
     name: "Constrictor, eastern boa",
     quantity: 2262,
     price: 32,
@@ -1036,7 +1036,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4493,
   },
   {
-    key: "0x8209ccd500e9cb895802d709f0c8800f8afdc6e7",
+    id: "0x8209ccd500e9cb895802d709f0c8800f8afdc6e7",
     name: "North American beaver",
     quantity: 964,
     price: 63,
@@ -1047,7 +1047,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3346,
   },
   {
-    key: "0xa163c74cf0e281cba7488f442229f35e2211ee5d",
+    id: "0xa163c74cf0e281cba7488f442229f35e2211ee5d",
     name: "Turaco, violet-crested",
     quantity: 4068,
     price: 75,
@@ -1058,7 +1058,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2949,
   },
   {
-    key: "0x4bfc75aa0157e0773eef250c1f511dbf2d454afd",
+    id: "0x4bfc75aa0157e0773eef250c1f511dbf2d454afd",
     name: "Euro wallaby",
     quantity: 2061,
     price: 74,
@@ -1069,7 +1069,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 2794,
   },
   {
-    key: "0xc5d28c01e06f37578d1b427a3f087a5c22ca6b79",
+    id: "0xc5d28c01e06f37578d1b427a3f087a5c22ca6b79",
     name: "Musk ox",
     quantity: 2975,
     price: 59,
@@ -1080,7 +1080,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 4731,
   },
   {
-    key: "0x3e9a6b2277a3fddcc5b8e01c11421d59f4ebc489",
+    id: "0x3e9a6b2277a3fddcc5b8e01c11421d59f4ebc489",
     name: "Baboon, chacma",
     quantity: 1406,
     price: 35,
@@ -1091,7 +1091,7 @@ export const cardsMock: CardProps[] = [
     defense_points: 3026,
   },
   {
-    key: "0xa0840309e9a6a7bdadf004203d7d6b76b074d5ab",
+    id: "0xa0840309e9a6a7bdadf004203d7d6b76b074d5ab",
     name: "Sloth, pale-throated three-toed",
     quantity: 2080,
     price: 11,
