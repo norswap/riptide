@@ -53,6 +53,10 @@ contract CardCollection is ERC721, Ownable, BoosterMinter {
         return tokenID;
     }
 
+    function totalSupply() external view override returns(uint256) {
+        return nextID;
+    }
+
     function getCardTypeInfo(uint256 card) external view returns(CardTypeInfo memory) {
         return cardTypeInfos[cardTypes[card]];
     }

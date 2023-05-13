@@ -45,9 +45,18 @@ contract BoosterManager is Ownable {
     // The total number of card types, summing accross all rarity classes.
     uint16 immutable public totalNumCardTypes;
 
+    // Boosters will stay at the initial price until the card supply reaches this number.
+    uint256 immutable public targetBaseSupply;
+
+    // Initial price (18 decimals) of a booster.
+    uint256 immutable public initialBoosterPrice;
+
     // An item will have weight (1 + logMultiplier * log10(price / averagePrice)), where price is
     // its own price, and averagePrice is the average price of all items in the rarity classes.
     UD60x18 immutable public logMultiplier;
+
+    // Current price (18 decimals) of a booster.
+    uint256 public currentBoosterPrice;
 
     // The contract that mints NFTs contained in boosters.
     BoosterMinter public boosterMinter;
@@ -67,10 +76,14 @@ contract BoosterManager is Ownable {
     constructor(
         BoosterMinter boosterMinter_,
         UD60x18 logMultiplier_,
+        uint256 targetBaseSupply_,
+        uint256 initialBoosterPrice_,
         RarityClass[] memory rarityClasses_)
             Ownable() {
         boosterMinter = boosterMinter_;
         logMultiplier = logMultiplier_;
+        targetBaseSupply = targetBaseSupply_;
+        initialBoosterPrice = initialBoosterPrice_;
         uint8 boosterSize_ = 0;
         uint16 totalNumCardTypes_ = 0;
         for (uint256 i = 0; i < rarityClasses_.length; ++i) {
@@ -122,9 +135,17 @@ contract BoosterManager is Ownable {
     // BOOSTER GENERATION & PURCHASE
 
     // Current booster price.
-    function boosterPrice() public pure returns(uint256) {
-        // TODO
-        return 0;
+    function boosterPrice() public view returns(uint256) {
+        if (boosterMinter.totalSupply() < targetBaseSupply)
+            return initialBoosterPrice;
+        else {
+            // NOTE: this could be tweaked or made configurable
+            uint256 supplyDiff = boosterMinter.totalSupply() - targetBaseSupply;
+            // e.g. if target is 1000, getting to 2000 total supply, would take price to
+            // `initial + 10^6 / (3*10^5) = inital + 3.3`, at 3000 it would be `initial + 13.3`
+            return initialBoosterPrice + supplyDiff * supplyDiff / 300_000;
+        }
+
     }
 
     // Purchase a booster at the current price.
