@@ -9,10 +9,15 @@ export const Home = () => {
   const { isConnected, address } = useAccount();
 
   return (
-    <div>
-      <a href="/cards">
-        <button>Navigate to cards</button>
-      </a>
+    <div className="flex flex-col items-center justify-center h-screen space-y-3">
+      <div className="flex-row space-x-3">
+        <a href="/cards">
+          <button>Navigate to cards</button>
+        </a>
+        <a href="/unpack">
+          <button>Unpack</button>
+        </a>
+      </div>
       <h1></h1>
       {!isConnected ? (
         <ConnectButton />
