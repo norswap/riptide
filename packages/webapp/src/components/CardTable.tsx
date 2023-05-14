@@ -1,18 +1,46 @@
 import { Fragment, useState } from "react";
-import { CardProps } from "src/interfaces/card-props";
 import { Dialog, Transition } from "@headlessui/react";
-import { motion } from "framer-motion";
 import { CardDetails } from "./card-details";
+import { CardTypeInfo } from "src/types";
 
 interface CardTableProps {
-  cards?: CardProps[];
+  cards?: CardTypeInfo[];
 }
+
+const rarityMappings = {
+  0: "Common",
+  1: "Unusual",
+  2: "Rare",
+};
+
+const priceMappings = {
+  0: 5,
+  1: 10,
+  2: 20,
+};
+
+const nameMappings = {
+  polygon: "Polydrake",
+  "gnosis-chain": "Chainicorn",
+  "1inch-network": "Inchling",
+  worldcoin: "Wyrmcoin",
+  "uniswap-foundation": "UniSphinx",
+  "lens-protocol": "Lensprite",
+  "metamask-linea": "Metapegasus",
+  "aave-grants-dao": "Aavephoenix",
+  "ethereum-foundation": "Etherdragon",
+  zkbob: "Zephyrbat",
+  "apecoin-dao": "Apedraugr",
+  optimism: "Optimera",
+};
 
 export default function CardTable({ cards }: CardTableProps) {
   const [selected, setSelected] = useState<number>();
+
+  console.log("cards", cards);
   return (
-    <>
-      <table className="min-w-full ">
+    <div className="h-full">
+      <table className="h-full min-w-full text-white">
         <thead>
           <tr>
             <th
@@ -39,23 +67,34 @@ export default function CardTable({ cards }: CardTableProps) {
                 Price
               </a>
             </th>
+            <th
+              scope="col"
+              className="px-3 py-3.5 text-right text-sm font-semibold "
+            >
+              <a href="#" className="group inline-flex">
+                Rarity
+              </a>
+            </th>
           </tr>
         </thead>
         <tbody>
           {cards.map((card, i) => (
             <tr
               key={i}
-              className="py-3 cursor-pointer hover:bg-white/5"
+              className="py-2 cursor-pointer hover:bg-white/5"
               onClick={() => setSelected(i)}
             >
-              <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium  sm:pl-0">
-                {card.name}
+              <td className="whitespace-nowrap py-1 pl-4 pr-3 text-white text-sm font-medium  sm:pl-0">
+                {nameMappings[card.name]}
               </td>
-              <td className="whitespace-nowrap py-2 px-3 text-sm text-white/80 text-right">
-                {card.quantity}
+              <td className="whitespace-nowrap py-1 px-3 text-sm text-white/80 text-right">
+                {card.supply.toString()}
               </td>
-              <td className="whitespace-nowrap py-2 px-3 text-sm text-white/80 text-right">
-                ${card.price}
+              <td className="whitespace-nowrap py-1 px-3 text-sm text-white/80 text-right">
+                {priceMappings[card.rarity]} gwei
+              </td>
+              <td className="whitespace-nowrap py-1 px-3 text-sm text-white/80 text-right">
+                {rarityMappings[card.rarity]}
               </td>
             </tr>
           ))}
@@ -125,6 +164,6 @@ export default function CardTable({ cards }: CardTableProps) {
           </div>
         </Dialog>
       </Transition.Root>
-    </>
+    </div>
   );
 }

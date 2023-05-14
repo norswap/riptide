@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 body {
-  @apply bg-black text-white;
-/*   background-image: url("img/bg.png");
+  height: 100vh;
+  background-image: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.85)),url("img/bg.png");
   background-repeat: no-repeat;
-  background-size: cover; */
+  background-size: cover;
 }
 
 button {

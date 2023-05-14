@@ -17,187 +17,90 @@ contract Deploy is Script {
     function run() external {
         vm.startBroadcast();
 
-        uint16[3] memory numCardsPerRarity = [uint16(18), uint16(5), uint16(3)];
-        CardTypeInfo[] memory cardTypeInfos = new CardTypeInfo[](26);
+        uint16[3] memory numCardsPerRarity = [uint16(7), uint16(3), uint16(2)];
+        CardTypeInfo[] memory cardTypeInfos = new CardTypeInfo[](12);
         // name, URL, supply, ID, rarity
         cardTypeInfos[0] = CardTypeInfo(
-            "Etherial Prism Starweaver",
+            "polygon",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[1] = CardTypeInfo(
-            "Gnomic Oracle of Cryptos",
+            "gnosis-chain",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[2] = CardTypeInfo(
-            "Inchling Whisperer of the Net",
+            "1inch-network",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[3] = CardTypeInfo(
-            "Planetcore Nomad",
+            "worldcoin",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[4] = CardTypeInfo(
-            "Luminous Optimara",
+            "uniswap-foundation",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[5] = CardTypeInfo(
-            "Swirling Fluxcaster",
+            "lens-protocol",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
+
         cardTypeInfos[6] = CardTypeInfo(
-            "Crystal Spectra Sentinel",
+            "metamask-linea",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[7] = CardTypeInfo(
-            "Filament Dreamsmith",
-            "pic://common1.png",
+            "aave-grants-dao",
+            "pic://unusual1.png",
             0,
             0,
-            Rarity.COMMON
+            Rarity.UNUSUAL
         );
         cardTypeInfos[8] = CardTypeInfo(
-            "Aerial Vortex Mariner",
+            "ethereum-foundation",
             "pic://common1.png",
             0,
             0,
-            Rarity.COMMON
+            Rarity.UNUSUAL
         );
         cardTypeInfos[9] = CardTypeInfo(
-            "Linea Lightweaver",
+            "zkbob",
             "pic://common1.png",
             0,
             0,
-            Rarity.COMMON
+            Rarity.UNUSUAL
         );
         cardTypeInfos[10] = CardTypeInfo(
-            "Aetherial Grantlok",
+            "apecoin-dao",
             "pic://common1.png",
             0,
             0,
-            Rarity.COMMON
+            Rarity.RARE
         );
         cardTypeInfos[11] = CardTypeInfo(
-            "Umbral Artificer",
+            "optimism",
             "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[12] = CardTypeInfo(
-            "Safeguard Golem",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[13] = CardTypeInfo(
-            "Ape Etherwitch of the Coin",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[14] = CardTypeInfo(
-            "Neon Nethermancer",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[15] = CardTypeInfo(
-            "Seismic Stoneforged",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[16] = CardTypeInfo(
-            "Pyrofuel Elementalist",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[17] = CardTypeInfo(
-            "Nomadic Nova Drifter",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[18] = CardTypeInfo(
-            "Metashield Valkyrie",
-            "pic://unusual1.png",
-            0,
-            0,
-            Rarity.UNUSUAL
-        );
-        cardTypeInfos[19] = CardTypeInfo(
-            "Bob, the Zephyr Scribe",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.UNUSUAL
-        );
-        cardTypeInfos[20] = CardTypeInfo(
-            "Ethereum Astral Knight",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.UNUSUAL
-        );
-        cardTypeInfos[21] = CardTypeInfo(
-            "Linkbound Chainsmith",
-            "pic://unusual1.png",
-            0,
-            0,
-            Rarity.UNUSUAL
-        );
-        cardTypeInfos[22] = CardTypeInfo(
-            "Cartographic Windchaser",
-            "pic://unusual1.png",
-            0,
-            0,
-            Rarity.UNUSUAL
-        );
-        cardTypeInfos[23] = CardTypeInfo(
-            "Graphite Titan",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.RARE
-        );
-        cardTypeInfos[24] = CardTypeInfo(
-            "Scrollbound Ancient",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.RARE
-        );
-        cardTypeInfos[25] = CardTypeInfo(
-            "Mantle Mantikora",
-            "pic://rare1.png",
             0,
             0,
             Rarity.RARE
@@ -222,10 +125,8 @@ contract Deploy is Script {
             2
         );
 
-        console2.log("trace2");
-
         CardCollection cardCollection = new CardCollection(cardTypeInfos);
-        console2.log("trace3");
+
         BoosterManager boosterManager = new BoosterManager(
             BoostedCollection(cardCollection),
             ud(2 ether), // log multiplier
@@ -234,7 +135,7 @@ contract Deploy is Script {
             rarityClasses
         );
         cardCollection.setBoosterManager(boosterManager);
-        console2.log("trace3");
+
         DemoAssertionEngine engine = new DemoAssertionEngine();
 
         // For demo purposes, there is zero delay between the assertion and the confirmation.
@@ -244,7 +145,6 @@ contract Deploy is Script {
             0
         );
         boosterManager.setAssertionManager(assertionManager);
-        console2.log("trace4");
 
         uint256[][] memory prices = new uint256[][](3);
         prices[0] = new uint256[](numCardsPerRarity[0]);
@@ -259,11 +159,8 @@ contract Deploy is Script {
         for (uint256 i = 0; i < numCardsPerRarity[2]; i++) {
             prices[2][i] = 20 gwei;
         }
-        console2.log("trace5");
         assertionManager.assertPrices(prices);
-        console2.log("trace6");
         assertionManager.confirmPrices();
-        console2.log("trace7");
 
         console2.log("CardCollection address", address(cardCollection));
         console2.log("BoosterManager address", address(boosterManager));
