@@ -15,6 +15,7 @@ enum Rarity {
 struct CardTypeInfo {
     string name;
     string URL;
+    uint256 supply;
     uint16 ID;
     Rarity rarity;
 }
@@ -54,6 +55,7 @@ contract CardCollection is ERC721, Ownable, BoostedCollection {
         uint256 tokenID = nextID++;
         _safeMint(to, tokenID, "");
         cardTypes[tokenID] = contractCardTypeID;
+        cardTypeInfos[contractCardTypeID].supply++;
         return tokenID;
     }
 

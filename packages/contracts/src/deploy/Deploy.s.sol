@@ -19,9 +19,10 @@ contract DeployLocal is Script {
 
         uint16[3] memory numCardsPerRarity = [uint16(1), uint16(1), uint16(1)];
         CardTypeInfo[] memory cardTypeInfos = new CardTypeInfo[](3);
-        cardTypeInfos[0] = CardTypeInfo("Alpha", "pic://alpha.png", 0, Rarity.COMMON);
-        cardTypeInfos[1] = CardTypeInfo("Beta", "pic://beta.png", 0, Rarity.UNUSUAL);
-        cardTypeInfos[2] = CardTypeInfo("Gamma", "pic://beta.png", 0, Rarity.RARE);
+        // name, URL, supply, ID, rarity
+        cardTypeInfos[0] = CardTypeInfo("Alpha", "pic://alpha.png", 0, 0, Rarity.COMMON);
+        cardTypeInfos[1] = CardTypeInfo("Beta", "pic://beta.png", 0, 1, Rarity.UNUSUAL);
+        cardTypeInfos[2] = CardTypeInfo("Gamma", "pic://gamma.png", 0, 2, Rarity.RARE);
 
         BoosterManager.RarityClass[] memory rarityClasses = new BoosterManager.RarityClass[](3);
         // total items, items per booster, rarity ID
