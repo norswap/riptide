@@ -107,7 +107,7 @@ const CardPack: React.FC<CardPackProps> = ({ cards }) => {
     <div className="flex flex-col items-center justify-center h-screen">
       {!isOpen ? (
         <motion.button
-          className="open-button"
+          className="px-3 py-2 border border-white/30 bg-white/5 rounded-md text-white"
           whileTap={{ scale: 0.9 }}
           onClick={openPack}
         >
@@ -271,7 +271,13 @@ export default function Unpack() {
 
   return (
     <div>
-      <button onClick={buyBooster}>Booster</button>
+      <button
+        className="px-3 py-2 rounded-md border border-white/30 bg-white/5 text-white"
+        onClick={buyBooster}
+      >
+        Buy Booster Pack ({Math.floor(Number(data) / 1000000000).toString()}{" "}
+        gwei)
+      </button>
       {`Address: ${address}, Connected: ${isConnected}`}
       {cardInfoData && cardInfoData.length > 0 && (
         <CardPack
