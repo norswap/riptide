@@ -40,6 +40,10 @@ contract CardCollection is ERC721, Ownable, BoostedCollection {
             cardTypeInfos.push(cardTypeInfos_[i]);
     }
 
+    function getCardTypeInfos() external view returns(CardTypeInfo[] memory) {
+        return cardTypeInfos;
+    }
+
     function mint(address to, uint8 rarityID, uint16 cardTypeID) external onlyOwner override returns(uint256) {
         // IMPORTANT: the cardTypeID in the parameter is different from the cardTypeID used
         // internally in the contract, we need to map one to the other first.
