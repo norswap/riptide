@@ -60,3 +60,9 @@ deploy: build
 		> out/deployment.json
 	@cd ../webapp && pnpm wagmi generate
 .PHONY: deploy
+
+update-forge-std:
+	rm -rf lib/forge-std
+	cd lib && git clone git@github.com:foundry-rs/forge-std.git
+	cd lib/forge-std && git submodule update --init --recursive
+.PHONY: update-forge-std
