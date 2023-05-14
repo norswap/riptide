@@ -69,8 +69,11 @@ contract Integration is Test {
         assertEq(boosterManager.boosterPrice(), 5 gwei);
         vm.deal(msg.sender, 5 ether);
         hoax(Alice, 5 ether);
-        vm.expectEmit(true, true, false, false, address(boosterManager));
-        emit BoosterPurchased(Alice, 5 gwei, new uint256[](4));
+        vm.expectEmit(true, true, false, true, address(boosterManager));
+        uint256[] memory itemIDs = new uint256[](7);
+        for (uint256 i = 0; i < itemIDs.length; i++)
+            itemIDs[i] = i;
+        emit BoosterPurchased(Alice, 5 gwei, itemIDs);
         boosterManager.buyBooster{value: 5 gwei}();
     }
 }
