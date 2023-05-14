@@ -2,5 +2,5 @@ forge-std/=lib/forge-std/src/
 openzeppelin/=lib/openzeppelin/src/
 multicall/=lib/multicall/
 prb-math/=lib/prb-math/src/
-uma-core/=lib/uma-core/contracts/
-@openzeppelin/contracts/=lib/openzeppelin/src/
+uma/=lib/uma/
+chainlink/=lib/chainlink/
