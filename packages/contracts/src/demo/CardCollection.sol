@@ -5,6 +5,7 @@ import "openzeppelin/token/ERC721/ERC721.sol";
 import "openzeppelin/access/Ownable.sol";
 
 import "../BoostedCollection.sol";
+import "../BoosterManager.sol";
 
 enum Rarity {
     COMMON,
@@ -30,6 +31,7 @@ contract CardCollection is ERC721, Ownable, BoostedCollection {
     CardTypeInfo[] public cardTypeInfos;
     mapping(uint256 cardID => uint16 cardTypeID) public cardTypes;
     uint16[3] public numCardsPerRarity;
+    BoosterManager public boosterManager;
 
     constructor(
         uint16[3] memory numCardsPerRarity_,
@@ -41,11 +43,18 @@ contract CardCollection is ERC721, Ownable, BoostedCollection {
             cardTypeInfos.push(cardTypeInfos_[i]);
     }
 
+    function setBoosterManager(BoosterManager boosterManager_) external onlyOwner {
+        boosterManager = boosterManager_;
+    }
+
     function getCardTypeInfos() external view returns(CardTypeInfo[] memory) {
         return cardTypeInfos;
     }
 
-    function mint(address to, uint8 rarityID, uint16 cardTypeID) external onlyOwner override returns(uint256) {
+    function mint(address to, uint8 rarityID, uint16 cardTypeID) external override returns(uint256) {
+        if (msg.sender != address(boosterManager))
+            revert("CardCollection: Only the booster manager can mint cards in this way");
+
         // IMPORTANT: the cardTypeID in the parameter is different from the cardTypeID used
         // internally in the contract, we need to map one to the other first.
         uint16 contractCardTypeID = rarityID == 0

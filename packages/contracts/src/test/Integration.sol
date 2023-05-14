@@ -3,6 +3,7 @@ pragma solidity ^0.8.19;
 
 import "forge-std/Test.sol";
 import "forge-std/console2.sol";
+import { hoax } from "forge-std/StdCheats.sol";
 import { ud } from "prb-math/UD60x18.sol";
 
 import "../demo/CardCollection.sol";
@@ -12,6 +13,8 @@ import "../BoostedCollection.sol";
 import "../AssertionManager.sol";
 
 contract Integration is Test {
+
+    address private constant Alice = 0x00000000000000000000000000000000DeaDBeef;
 
     CardTypeInfo[] private cardTypeInfos;
 
@@ -42,6 +45,7 @@ contract Integration is Test {
             20, // target base supply
             5 gwei, // initial booster price
             rarityClasses);
+        cardCollection.setBoosterManager(boosterManager);
 
         engine = new DemoAssertionEngine();
 
@@ -65,9 +69,9 @@ contract Integration is Test {
     function testIntegration() public {
         assertEq(boosterManager.boosterPrice(), 5 gwei);
         vm.deal(msg.sender, 5 ether);
-        // event BoosterPurchased(address indexed buyer, uint256 price, uint256[] itemIDs);
+        vm.hoax(Alice, 5 ether);
         vm.expectEmit(true, true, false, false, address(boosterManager));
-        emit BoosterPurchased(msg.sender, 5 gwei, new uint256[](4));
+        emit BoosterPurchased(Alice, 5 gwei, new uint256[](4));
         boosterManager.buyBooster{value: 5 gwei}();
     }
 }

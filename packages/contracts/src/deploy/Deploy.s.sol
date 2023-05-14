@@ -38,6 +38,7 @@ contract DeployLocal is Script {
             20, // target base supply
             5 gwei, // initial booster price
             rarityClasses);
+        cardCollection.setBoosterManager(boosterManager);
 
         DemoAssertionEngine engine = new DemoAssertionEngine();
 
