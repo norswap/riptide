@@ -17,7 +17,6 @@ contract DeployLocal is Script {
     function run() external {
         vm.startBroadcast();
 
-        uint16[3] memory numCardsPerRarity = [uint16(18), uint16(5), uint16(3)];
         CardTypeInfo[] memory cardTypeInfos = new CardTypeInfo[](26);
         // name, URL, supply, ID, rarity
         cardTypeInfos[0] = CardTypeInfo(
@@ -222,10 +221,7 @@ contract DeployLocal is Script {
             2
         );
 
-        CardCollection cardCollection = new CardCollection(
-            numCardsPerRarity,
-            cardTypeInfos
-        );
+        CardCollection cardCollection = new CardCollection(cardTypeInfos);
 
         BoosterManager boosterManager = new BoosterManager(
             BoostedCollection(cardCollection),

@@ -30,17 +30,22 @@ contract CardCollection is ERC721, Ownable, BoostedCollection {
 
     CardTypeInfo[] public cardTypeInfos;
     mapping(uint256 cardID => uint16 cardTypeID) public cardTypes;
-    uint16[3] public numCardsPerRarity;
+    uint16[3] public firstCardOfRarity;
     BoosterManager public boosterManager;
 
-    constructor(
-        uint16[3] memory numCardsPerRarity_,
-        CardTypeInfo[] memory cardTypeInfos_)
+    constructor(CardTypeInfo[] memory cardTypeInfos_)
             ERC721("Cards", "CARD")
             Ownable() {
-        numCardsPerRarity = numCardsPerRarity_;
-        for (uint256 i = 0; i < cardTypeInfos_.length; ++i)
+
+        uint8 currentRarity = 0;
+        uint16 cumulativeCards = 0;
+        firstCardOfRarity[0] = 0;
+        for (uint256 i = 0; i < cardTypeInfos_.length; ++i) {
+            if (cardTypeInfos_[i].rarity != Rarity(currentRarity))
+                firstCardOfRarity[++currentRarity] = cumulativeCards;
             cardTypeInfos.push(cardTypeInfos_[i]);
+            ++cumulativeCards;
+        }
     }
 
     function setBoosterManager(BoosterManager boosterManager_) external onlyOwner {
@@ -59,7 +64,7 @@ contract CardCollection is ERC721, Ownable, BoostedCollection {
         // internally in the contract, we need to map one to the other first.
         uint16 contractCardTypeID = rarityID == 0
             ? cardTypeID
-            : numCardsPerRarity[rarityID - 1] + cardTypeID;
+            : firstCardOfRarity[rarityID] + cardTypeID;
 
         uint256 tokenID = nextID++;
         _safeMint(to, tokenID, "");

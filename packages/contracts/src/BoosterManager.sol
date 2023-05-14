@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 import "openzeppelin/access/Ownable.sol";
-import { UD60x18, ud, log10, ceil, convert, UNIT } from "prb-math/UD60x18.sol";
+import { UD60x18, ud, log10, ceil, convert, intoUint256, UNIT } from "prb-math/UD60x18.sol";
 import "forge-std/console2.sol";
 
 import "./AssertionManager.sol";

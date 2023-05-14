@@ -24,8 +24,6 @@ contract Integration is Test {
     AssertionManager private assertionManager;
 
     function setUp() public {
-        uint16[3] memory numCardsPerRarity = [uint16(1), uint16(1), uint16(1)];
-
         // name, URL, supply, ID, rarity
         cardTypeInfos.push(CardTypeInfo("Common 1", "pic://common1.png", 0, 0, Rarity.COMMON));
         cardTypeInfos.push(CardTypeInfo("Common 2", "pic://common2.png", 0, 1, Rarity.COMMON));
@@ -40,7 +38,7 @@ contract Integration is Test {
         rarityClasses[1] = BoosterManager.RarityClass(2, 2, 1);
         rarityClasses[2] = BoosterManager.RarityClass(2, 1, 2);
 
-        cardCollection = new CardCollection(numCardsPerRarity, cardTypeInfos);
+        cardCollection = new CardCollection(cardTypeInfos);
 
         boosterManager = new BoosterManager(
             BoostedCollection(cardCollection),
@@ -93,7 +91,7 @@ contract Integration is Test {
 
         prices[0][0] = 1 ether;
         prices[1][0] = 2 ether;
-        prices[2][0] = 4 ether;
+        prices[2][0] = 8 ether;
         assertionManager.assertPrices(prices);
         assertionManager.confirmPrices();
 
@@ -102,8 +100,29 @@ contract Integration is Test {
         Vm.Log[] memory logs = vm.getRecordedLogs();
         Vm.Log memory last = logs[logs.length - 1];
         assertEq(last.topics[0], keccak256("BoosterPurchased(address,uint256,uint256[])"));
-        //uint256[] memory biasedItemIDs = abi.decode(logs[0].data, (uint256[]));
+        (, uint256[] memory biasedItemIDs) = abi.decode(last.data, (uint256, uint256[]));
 
-        // endHoax();
+        biasedItemIDs[0] = biasedItemIDs[0]; // silence warnings
+
+        // TODO remove constants - parameterize
+
+        // TODO this works, but because there are only two cards, the massively more expensive card
+        //  is only twice the average, making the scaling effect less obvious
+
+//        for (uint256 i = 0; i < 4; i++) {
+//            // We set the price of the first item in each rarity class to be vastly superior to the
+//            // other one, so they should always drop.
+//            assertEq(cardCollection.getCardTypeInfo(biasedItemIDs[i]).name, "Common 1");
+//        }
+//        for (uint256 i = 4; i < 6; i++) {
+//            // We set the price of the first item in each rarity class to be vastly superior to the
+//            // other one, so they should always drop.
+//            assertEq(cardCollection.getCardTypeInfo(biasedItemIDs[i]).name, "Unusual 1");
+//        }
+//        for (uint256 i = 6; i < 7; i++) {
+//            // We set the price of the first item in each rarity class to be vastly superior to the
+//            // other one, so they should always drop.
+//            assertEq(cardCollection.getCardTypeInfo(biasedItemIDs[i]).name, "Rare 1");
+//        }
     }
 }
