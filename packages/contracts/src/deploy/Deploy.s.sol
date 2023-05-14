@@ -21,179 +21,179 @@ contract DeployLocal is Script {
         CardTypeInfo[] memory cardTypeInfos = new CardTypeInfo[](26);
         // name, URL, supply, ID, rarity
         cardTypeInfos[0] = CardTypeInfo(
-            "Etherial Prism Starweaver",
+            "polygon",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[1] = CardTypeInfo(
-            "Gnomic Oracle of Cryptos",
+            "gnosis-chain",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[2] = CardTypeInfo(
-            "Inchling Whisperer of the Net",
+            "1inch-network",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[3] = CardTypeInfo(
-            "Planetcore Nomad",
+            "worldcoin",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[4] = CardTypeInfo(
-            "Luminous Optimara",
+            "uniswap-foundation",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[5] = CardTypeInfo(
-            "Swirling Fluxcaster",
+            "lens-protocol",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[6] = CardTypeInfo(
-            "Crystal Spectra Sentinel",
+            "filecoin-virtual-machine-fvm",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[7] = CardTypeInfo(
-            "Filament Dreamsmith",
+            "metamask-linea",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[8] = CardTypeInfo(
-            "Aerial Vortex Mariner",
-            "pic://common1.png",
+            "aave-grants-dao",
+            "pic://unusual1.png",
             0,
             0,
-            Rarity.COMMON
+            Rarity.UNUSUAL
         );
         cardTypeInfos[9] = CardTypeInfo(
-            "Linea Lightweaver",
+            "uma",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[10] = CardTypeInfo(
-            "Aetherial Grantlok",
+            "cartesi",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[11] = CardTypeInfo(
-            "Umbral Artificer",
+            "airstack",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[12] = CardTypeInfo(
-            "Safeguard Golem",
-            "pic://common1.png",
+            "safe",
+            "pic://unusual1.png",
             0,
             0,
-            Rarity.COMMON
+            Rarity.UNUSUAL
         );
         cardTypeInfos[13] = CardTypeInfo(
-            "Ape Etherwitch of the Coin",
+            "ethereum-foundation",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[14] = CardTypeInfo(
-            "Neon Nethermancer",
+            "zkbob",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[15] = CardTypeInfo(
-            "Seismic Stoneforged",
+            "apecoin-dao",
             "pic://common1.png",
             0,
             0,
-            Rarity.COMMON
+            Rarity.UNUSUAL
         );
         cardTypeInfos[16] = CardTypeInfo(
-            "Pyrofuel Elementalist",
+            "the-graph",
             "pic://common1.png",
             0,
             0,
-            Rarity.COMMON
+            Rarity.UNUSUAL
         );
         cardTypeInfos[17] = CardTypeInfo(
-            "Nomadic Nova Drifter",
+            "fuel",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
         cardTypeInfos[18] = CardTypeInfo(
-            "Metashield Valkyrie",
-            "pic://unusual1.png",
+            "sismo",
+            "pic://common1.png",
             0,
             0,
-            Rarity.UNUSUAL
+            Rarity.RARE
         );
         cardTypeInfos[19] = CardTypeInfo(
-            "Bob, the Zephyr Scribe",
+            "scroll",
             "pic://common1.png",
             0,
             0,
-            Rarity.UNUSUAL
+            Rarity.COMMON
         );
         cardTypeInfos[20] = CardTypeInfo(
-            "Ethereum Astral Knight",
+            "neon-foundation",
             "pic://common1.png",
             0,
             0,
-            Rarity.UNUSUAL
+            Rarity.COMMON
         );
         cardTypeInfos[21] = CardTypeInfo(
+            "nouns-dao",
+            "pic://common1.png",
+            0,
+            0,
+            Rarity.RARE
+        );
+        cardTypeInfos[22] = CardTypeInfo(
+            "chainlink",
+            "pic://common1.png",
+            0,
+            0,
+            Rarity.COMMON
+        );
+        cardTypeInfos[23] = CardTypeInfo(
+            "mantle",
+            "pic://common1.png",
+            0,
+            0,
+            Rarity.COMMON
+        );
+        cardTypeInfos[24] = CardTypeInfo(
             "Linkbound Chainsmith",
             "pic://unusual1.png",
             0,
             0,
             Rarity.UNUSUAL
-        );
-        cardTypeInfos[22] = CardTypeInfo(
-            "Cartographic Windchaser",
-            "pic://unusual1.png",
-            0,
-            0,
-            Rarity.UNUSUAL
-        );
-        cardTypeInfos[23] = CardTypeInfo(
-            "Graphite Titan",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.RARE
-        );
-        cardTypeInfos[24] = CardTypeInfo(
-            "Scrollbound Ancient",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.RARE
         );
         cardTypeInfos[25] = CardTypeInfo(
             "Mantle Mantikora",
@@ -222,10 +222,11 @@ contract DeployLocal is Script {
             2
         );
 
-        console2.log("trace2");
+        CardCollection cardCollection = new CardCollection(
+            numCardsPerRarity,
+            cardTypeInfos
+        );
 
-        CardCollection cardCollection = new CardCollection(cardTypeInfos);
-        console2.log("trace3");
         BoosterManager boosterManager = new BoosterManager(
             BoostedCollection(cardCollection),
             ud(2 ether), // log multiplier
@@ -234,7 +235,7 @@ contract DeployLocal is Script {
             rarityClasses
         );
         cardCollection.setBoosterManager(boosterManager);
-        console2.log("trace3");
+
         DemoAssertionEngine engine = new DemoAssertionEngine();
 
         // For demo purposes, there is zero delay between the assertion and the confirmation.
@@ -244,7 +245,6 @@ contract DeployLocal is Script {
             0
         );
         boosterManager.setAssertionManager(assertionManager);
-        console2.log("trace4");
 
         uint256[][] memory prices = new uint256[][](3);
         prices[0] = new uint256[](numCardsPerRarity[0]);
@@ -259,11 +259,8 @@ contract DeployLocal is Script {
         for (uint256 i = 0; i < numCardsPerRarity[2]; i++) {
             prices[2][i] = 20 gwei;
         }
-        console2.log("trace5");
         assertionManager.assertPrices(prices);
-        console2.log("trace6");
         assertionManager.confirmPrices();
-        console2.log("trace7");
 
         console2.log("CardCollection address", address(cardCollection));
         console2.log("BoosterManager address", address(boosterManager));
