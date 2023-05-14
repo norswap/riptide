@@ -169,9 +169,6 @@ contract BoosterManager is Ownable {
         uint256[] memory items = new uint256[](boosterSize);
         for (uint8 rarityID = 0; rarityID < rarityClasses.length; ++rarityID) {
             for (uint256 j = 0; j < rarityClasses[rarityID].itemsPerBooster; ++j) {
-                console2.log(rarityID, j, i);
-                console2.log(pickItem(rarityID));
-                console2.log("done");
                 items[i++] = boostedConnection.mint(msg.sender, rarityID, pickItem(rarityID));
             }
         }
@@ -196,7 +193,6 @@ contract BoosterManager is Ownable {
         uint256 seed = randomness();
         uint16 numItems = rarityClasses[rarityID].totalItems;
         uint256 random = uint256(keccak256(abi.encodePacked(seed, seqNum))) % (numItems * 256);
-        console2.log("random", random, "block", block.number);
         // TODO set weights
         WeightSlot memory slot = weights.array[rarityID][random / 256];
         return random % 256 <= slot.probabilitySplit ? slot.typeID1 : slot.typeID2;
@@ -213,7 +209,7 @@ contract BoosterManager is Ownable {
             average += prices[i];
         average = average / prices.length;
 
-        UD60x18 ONE = ud(1);
+        UD60x18 ONE = ud(1 ether);
         UD60x18 avg = ud(average);
         UD60x18[] memory decimalWeights = new UD60x18[](prices.length);
         UD60x18 totalWeight = ud(0);
@@ -225,18 +221,26 @@ contract BoosterManager is Ownable {
         WeightSlot[] memory rarityWeights = new WeightSlot[](convert(ceil(totalWeight)));
         uint16 lastTypeID = 0;
         // TODO check conversion doesn't overflow
-        uint16 remainingWeight = uint16(convert(decimalWeights[lastTypeID] * ud(256)));
+        uint16 remainingWeight = uint16(convert(decimalWeights[lastTypeID] * ud(256 ether)));
         for (uint256 i = 0; i < rarityWeights.length; ++i) {
             rarityWeights[i].typeID1 = lastTypeID;
-            if (remainingWeight >= 256) {
-                remainingWeight -= 256;
+            if (remainingWeight == 256) {
+                // exactly one slot of weight left, fill slot and move to next typeID
                 rarityWeights[i].probabilitySplit = 255;
+                if (++lastTypeID == decimalWeights.length) break;
+                remainingWeight = uint16(convert(decimalWeights[lastTypeID] * ud(256 ether)));
+            } else if (remainingWeight > 256) {
+                // more than one slot worth of weight left, fill slot and keep typeID
+                rarityWeights[i].probabilitySplit = 255;
+                remainingWeight -= 256;
             } else {
-                rarityWeights[i].probabilitySplit = uint8(remainingWeight - 1); // because it includes 0
-                if (lastTypeID == decimalWeights.length) break;
-                rarityWeights[i].typeID2 = ++lastTypeID;
+                // less than one slot worth of weight left, split slot between current and next typeID
+                // -1 here is because the range of the first typeID includes 0 (it's [0, probabilitySplit])
+                rarityWeights[i].probabilitySplit = uint8(remainingWeight - 1);
+                if (++lastTypeID == decimalWeights.length) break;
+                rarityWeights[i].typeID2 = lastTypeID;
                 uint8 remainingProbabilityInSlot = 255 - rarityWeights[i].probabilitySplit;
-                remainingWeight = uint16(convert(decimalWeights[lastTypeID] * ud(256))) - remainingProbabilityInSlot;
+                remainingWeight = uint16(convert(decimalWeights[lastTypeID] * ud(256 ether))) - remainingProbabilityInSlot;
             }
         }
 
@@ -251,7 +255,6 @@ contract BoosterManager is Ownable {
         for (uint256 rarityID = 0; rarityID < prices.length; ++rarityID) {
             if (prices[rarityID].length != rarityClasses[rarityID].totalItems)
                 revert("BoosterManager: invalid number of items for rarity class");
-            console2.log("weights for rarity", rarityID);
             generatedWeights.array[rarityID] = weightsForRarityFromPrices(prices[rarityID]);
         }
 
@@ -273,9 +276,23 @@ contract BoosterManager is Ownable {
             revert("BoosterManager: only assertion manager can set weights");
 
         WeightSlot[][] memory generatedWeights = weightsFromPrices(prices).array;
-        for (uint256 i = 0; i < prices.length; ++i)
-            for (uint256 j = 0; j < prices[i].length; ++j)
+
+        uint256 weightsLength = weights.array.length;
+        for (uint256 i = 0; i < prices.length; ++i) {
+            if (i >= weightsLength) {
+                weights.array.push();
+                ++weightsLength;
+            }
+            uint256 weightsLenghtAtIndex = weights.array[i].length;
+
+            for (uint256 j = 0; j < prices[i].length; ++j) {
+                if (j >= weightsLenghtAtIndex) {
+                    weights.array[i].push();
+                    ++weightsLenghtAtIndex;
+                }
                 weights.array[i][j] = generatedWeights[i][j];
+            }
+        }
     }
 
     // =============================================================================================

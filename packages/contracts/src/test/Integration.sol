@@ -38,7 +38,7 @@ contract Integration is Test {
 
         boosterManager = new BoosterManager(
             BoostedCollection(cardCollection),
-            ud(2), // log multiplier
+            ud(2 ether), // log multiplier
             20, // target base supply
             5 gwei, // initial booster price
             rarityClasses);
@@ -56,9 +56,7 @@ contract Integration is Test {
         prices[2] = new uint256[](1);
         prices[2][0] = 20 gwei;
         assertionManager.assertPrices(prices);
-        console2.log("before");
         assertionManager.confirmPrices();
-        console2.log("after");
     }
 
     // Same signature as BoosterManager.BoosterPurchased.

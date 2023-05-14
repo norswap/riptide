@@ -34,7 +34,7 @@ contract DeployLocal is Script {
 
         BoosterManager boosterManager = new BoosterManager(
             BoostedCollection(cardCollection),
-            ud(2), // log multiplier
+            ud(2 ether), // log multiplier
             20, // target base supply
             5 gwei, // initial booster price
             rarityClasses);
