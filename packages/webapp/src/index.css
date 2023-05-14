@@ -4,6 +4,9 @@
 
 body {
   @apply bg-black text-white;
+/*   background-image: url("img/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 /* #root {
   max-width: 1280px;
