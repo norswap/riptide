@@ -17,8 +17,8 @@ contract DeployLocal is Script {
     function run() external {
         vm.startBroadcast();
 
-        uint16[3] memory numCardsPerRarity = [uint16(18), uint16(5), uint16(3)];
-        CardTypeInfo[] memory cardTypeInfos = new CardTypeInfo[](26);
+        uint16[3] memory numCardsPerRarity = [uint16(7), uint16(3), uint16(2)];
+        CardTypeInfo[] memory cardTypeInfos = new CardTypeInfo[](12);
         // name, URL, supply, ID, rarity
         cardTypeInfos[0] = CardTypeInfo(
             "polygon",
@@ -62,142 +62,45 @@ contract DeployLocal is Script {
             0,
             Rarity.COMMON
         );
+
         cardTypeInfos[6] = CardTypeInfo(
-            "filecoin-virtual-machine-fvm",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[7] = CardTypeInfo(
             "metamask-linea",
             "pic://common1.png",
             0,
             0,
             Rarity.COMMON
         );
-        cardTypeInfos[8] = CardTypeInfo(
+        cardTypeInfos[7] = CardTypeInfo(
             "aave-grants-dao",
             "pic://unusual1.png",
             0,
             0,
             Rarity.UNUSUAL
         );
-        cardTypeInfos[9] = CardTypeInfo(
-            "uma",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[10] = CardTypeInfo(
-            "cartesi",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[11] = CardTypeInfo(
-            "airstack",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[12] = CardTypeInfo(
-            "safe",
-            "pic://unusual1.png",
-            0,
-            0,
-            Rarity.UNUSUAL
-        );
-        cardTypeInfos[13] = CardTypeInfo(
+        cardTypeInfos[8] = CardTypeInfo(
             "ethereum-foundation",
             "pic://common1.png",
             0,
             0,
-            Rarity.COMMON
+            Rarity.UNUSUAL
         );
-        cardTypeInfos[14] = CardTypeInfo(
+        cardTypeInfos[9] = CardTypeInfo(
             "zkbob",
             "pic://common1.png",
             0,
             0,
-            Rarity.COMMON
+            Rarity.UNUSUAL
         );
-        cardTypeInfos[15] = CardTypeInfo(
+        cardTypeInfos[10] = CardTypeInfo(
             "apecoin-dao",
             "pic://common1.png",
             0,
             0,
-            Rarity.UNUSUAL
-        );
-        cardTypeInfos[16] = CardTypeInfo(
-            "the-graph",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.UNUSUAL
-        );
-        cardTypeInfos[17] = CardTypeInfo(
-            "fuel",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[18] = CardTypeInfo(
-            "sismo",
-            "pic://common1.png",
-            0,
-            0,
             Rarity.RARE
         );
-        cardTypeInfos[19] = CardTypeInfo(
-            "scroll",
+        cardTypeInfos[11] = CardTypeInfo(
+            "optimism",
             "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[20] = CardTypeInfo(
-            "neon-foundation",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[21] = CardTypeInfo(
-            "nouns-dao",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.RARE
-        );
-        cardTypeInfos[22] = CardTypeInfo(
-            "chainlink",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[23] = CardTypeInfo(
-            "mantle",
-            "pic://common1.png",
-            0,
-            0,
-            Rarity.COMMON
-        );
-        cardTypeInfos[24] = CardTypeInfo(
-            "Linkbound Chainsmith",
-            "pic://unusual1.png",
-            0,
-            0,
-            Rarity.UNUSUAL
-        );
-        cardTypeInfos[25] = CardTypeInfo(
-            "Mantle Mantikora",
-            "pic://rare1.png",
             0,
             0,
             Rarity.RARE
@@ -222,10 +125,7 @@ contract DeployLocal is Script {
             2
         );
 
-        CardCollection cardCollection = new CardCollection(
-            numCardsPerRarity,
-            cardTypeInfos
-        );
+        CardCollection cardCollection = new CardCollection(cardTypeInfos);
 
         BoosterManager boosterManager = new BoosterManager(
             BoostedCollection(cardCollection),
