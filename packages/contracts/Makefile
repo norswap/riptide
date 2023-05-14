@@ -61,6 +61,13 @@ deploy: build
 	@cd ../webapp && pnpm wagmi generate
 .PHONY: deploy
 
+debug-deploy:
+	@forge script src/deploy/Deploy.s.sol:DeployLocal \
+		--fork-url http://localhost:8545 \
+		--private-key $(PRIVATE_KEY0) \
+		--broadcast
+.PHONY: debug-deploy
+
 update-forge-std:
 	rm -rf lib/forge-std
 	cd lib && git clone git@github.com:foundry-rs/forge-std.git
