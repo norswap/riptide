@@ -30,3 +30,16 @@ By default:
   - the contract addresses are output to `out/deployment.json`
   - also updates the wagmi-generated bindings (in `packages/webapp/src/generated.ts`)
 - `make selectors` - dumps to selectors for functions, events and errors to `out/selectors.txt`
+
+## Deployments
+
+### Goerli
+
+
+
+### Gnosis Chain
+
+CardCollection address 0x00fa87DBc9b5A30F8408dbd92743F018cc03CAB8
+BoosterManager address 0xC837016374a6AA4B9dE49B4084580F9e6E9FcCD4
+AssertionEngine address 0xdE204a7aD06EE535DFd16213cB7D9337Fbbbb04e
+AssertionManager address 0xa11b763ddA1A80Ee5032079d17352C227DF257fB

@@ -2,6 +2,10 @@
 # (-include to ignore error if it does not exist)
 -include .env
 
+# Set CONFIG to "LOCAL" by default. Other valid values: "TEST" or "MAIN".
+CONFIG?=LOCAL
+export CONFIG
+
 # See README.md for documentation.
 
 setup:
@@ -46,11 +50,10 @@ selectors:
 	forge upload-selectors --all > out/selectors.txt
 .PHONY: selectors
 
-# TODO: handle different deployment targets (possibly via envs?)
 deploy: build
-	@forge script src/deploy/Deploy.s.sol:DeployLocal \
-		--fork-url http://localhost:8545 \
-		--private-key $(PRIVATE_KEY0) \
+	@forge script src/deploy/Deploy.s.sol:Deploy \
+		--fork-url $(RPC_$(CONFIG)) \
+		--private-key $(PRIVATE_KEY_$(CONFIG)) \
 		--broadcast \
 		| grep "address " > out/deployment.txt
 	@cat out/deployment.txt
@@ -58,11 +61,10 @@ deploy: build
 		out/deployment.txt \
 		out/abis.json \
 		> out/deployment.json
-	@cd ../webapp && pnpm wagmi generate
 .PHONY: deploy
 
 debug-deploy:
-	@forge script src/deploy/Deploy.s.sol:DeployLocal \
+	@forge script src/deploy/Deploy.s.sol:Deploy \
 		--fork-url http://localhost:8545 \
 		--private-key $(PRIVATE_KEY0) \
 		--broadcast
