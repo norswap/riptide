@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useAccount, useContractEvent } from "wagmi";
-import { BoosterManagerAbi } from "../constants/abi";
+import {
+  useAccount,
+  useContractEvent,
+  useContractRead,
+  useContractWrite,
+  usePrepareContractWrite,
+} from "wagmi";
+import BoosterManagerAbi from "../constants/abis/BoosterManager.json";
+import { BOOSTER_MANAGER } from "../constants/addresses";
+import { parseAbi, parseEther } from "viem";
 
 interface Card {
   id: number;
@@ -105,22 +113,45 @@ const CardComponent: React.FC<CardComponentProps> = ({ card, delay }) => {
 export default function Unpack() {
   const cardIds = [1, 2, 3, 4, 5, 6, 7];
 
-  const unwatch = useContractEvent({
-    address: "0xw",
+  const { data, isError, isLoading } = useContractRead({
+    address: BOOSTER_MANAGER,
     abi: BoosterManagerAbi,
-    eventName: "BoosterPurchased",
-    listener(log) {
-      const { data } = log[0];
-      console.log("data");
-    },
+    functionName: "boosterPrice",
   });
+
+  // const unwatch = useContractEvent({
+  //   address: BOOSTER_MANAGER,
+  //   abi: BoosterManagerAbi,
+  //   eventName: "BoosterPurchased",
+  //   listener(log) {
+  //   },
+  // });
+
+  useEffect(() => {
+    console.log("data", data);
+  }, [data]);
+
+  const { config } = usePrepareContractWrite({
+    address: BOOSTER_MANAGER,
+    abi: BoosterManagerAbi,
+    functionName: "buyBooster",
+    args: [],
+    value: 5000000000n,
+  });
+
+  const { write } = useContractWrite(config);
 
   const { address, isConnected } = useAccount();
 
+  const buyBooster = () => {
+    write();
+  };
+
   return (
     <div>
+      <button onClick={buyBooster}>Booster</button>
       {`Address: ${address}, Connected: ${isConnected}`}
-      <CardPack
+      {/* <CardPack
         cards={[
           { id: 0, name: "YEet", image: " yee" },
           { id: 0, name: "YEet", image: " yee" },
@@ -130,7 +161,7 @@ export default function Unpack() {
           { id: 0, name: "YEet", image: " yee" },
           { id: 0, name: "YEet", image: " yee" },
         ]}
-      />
+      /> */}
     </div>
   );
 }

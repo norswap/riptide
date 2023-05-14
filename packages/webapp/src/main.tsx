@@ -7,10 +7,31 @@ import "@rainbow-me/rainbowkit/styles.css";
 
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { goerli } from "wagmi/chains";
+import { Chain } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 
-const { chains, publicClient } = configureChains([goerli], [publicProvider()]);
+const anvil: Chain = {
+  id: 1337,
+  name: "Anvil",
+  network: "Anvil",
+  nativeCurrency: {
+    name: "Ethereum",
+    symbol: "ETH",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ["http://127.0.0.1:8545"],
+      webSocket: [],
+    },
+    public: {
+      http: ["http://127.0.0.1:8545"],
+      webSocket: [],
+    },
+  },
+};
+
+const { chains, publicClient } = configureChains([anvil], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
   appName: "My RainbowKit App",
