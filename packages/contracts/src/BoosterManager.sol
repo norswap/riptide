@@ -166,9 +166,15 @@ contract BoosterManager is Ownable {
         // TODO move sequencer number handling up here
         uint256 i = 0;
         uint256[] memory items = new uint256[](boosterSize);
-        for (uint8 rarityID = 0; rarityID < rarityClasses.length; ++rarityID)
-            for (uint256 j = 0; j < rarityClasses[rarityID].itemsPerBooster; ++j)
+        for (uint8 rarityID = 0; rarityID < rarityClasses.length; ++rarityID) {
+            for (uint256 j = 0; j < rarityClasses[rarityID].itemsPerBooster; ++j) {
+                console2.log(rarityID, j, i);
+                console2.log(pickItem(rarityID));
+                console2.log("done");
                 items[i++] = boostedConnection.mint(msg.sender, rarityID, pickItem(rarityID));
+            }
+        }
+
         emit BoosterPurchased(msg.sender, msg.value, items);
     }
 

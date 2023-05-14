@@ -15,6 +15,7 @@ enum Rarity {
 struct CardTypeInfo {
     string name;
     string URL;
+    uint256 supply;
     uint16 ID;
     Rarity rarity;
 }
@@ -40,6 +41,10 @@ contract CardCollection is ERC721, Ownable, BoostedCollection {
             cardTypeInfos.push(cardTypeInfos_[i]);
     }
 
+    function getCardTypeInfos() external view returns(CardTypeInfo[] memory) {
+        return cardTypeInfos;
+    }
+
     function mint(address to, uint8 rarityID, uint16 cardTypeID) external onlyOwner override returns(uint256) {
         // IMPORTANT: the cardTypeID in the parameter is different from the cardTypeID used
         // internally in the contract, we need to map one to the other first.
@@ -50,6 +55,7 @@ contract CardCollection is ERC721, Ownable, BoostedCollection {
         uint256 tokenID = nextID++;
         _safeMint(to, tokenID, "");
         cardTypes[tokenID] = contractCardTypeID;
+        cardTypeInfos[contractCardTypeID].supply++;
         return tokenID;
     }
 
