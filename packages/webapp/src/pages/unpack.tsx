@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useAccount, useContractEvent } from "wagmi";
+import { BoosterManagerAbi } from "../constants/abi";
 
 interface Card {
   id: number;
@@ -101,8 +103,23 @@ const CardComponent: React.FC<CardComponentProps> = ({ card, delay }) => {
 };
 
 export default function Unpack() {
+  const cardIds = [1, 2, 3, 4, 5, 6, 7];
+
+  const unwatch = useContractEvent({
+    address: "0xw",
+    abi: BoosterManagerAbi,
+    eventName: "BoosterPurchased",
+    listener(log) {
+      const { data } = log[0];
+      console.log("data");
+    },
+  });
+
+  const { address, isConnected } = useAccount();
+
   return (
     <div>
+      {`Address: ${address}, Connected: ${isConnected}`}
       <CardPack
         cards={[
           { id: 0, name: "YEet", image: " yee" },

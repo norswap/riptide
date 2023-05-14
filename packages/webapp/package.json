@@ -8,15 +8,20 @@
     "@heroicons/react": "^2.0.18",
     "@metamask/detect-provider": "^2.0.0",
     "@metamask/sdk": "^0.2.4",
+    "@rainbow-me/rainbowkit": "^1.0.0",
+    "@wagmi/core": "^1.0.2",
     "framer-motion": "^10.12.10",
+    "install": "^0.13.0",
     "jotai": "^2.0.4",
     "jotai-devtools": "^0.5.3",
     "lodash": "^4.17.21",
+    "pnpm": "^8.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "^6.11.1",
     "react-tilt": "^1.0.2",
-    "viem": "^0.3.24"
+    "viem": "^0.3.24",
+    "wagmi": "^1.0.2"
   },
   "devDependencies": {
     "@swc-jotai/debug-label": "^0.0.10",

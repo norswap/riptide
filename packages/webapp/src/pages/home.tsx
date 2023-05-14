@@ -1,17 +1,24 @@
-import { useMetaMask } from "../hooks/useMetaMask";
+import { useEffect } from "react";
+// import { useMetaMask } from "../hooks/useMetaMask";
+import { InjectedConnector } from "@wagmi/core";
+
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount } from "wagmi";
 
 export const Home = () => {
-  const { connectMetaMask, wallet } = useMetaMask();
+  const { isConnected, address } = useAccount();
+
   return (
     <div>
       <a href="/cards">
         <button>Navigate to cards</button>
       </a>
-      {!wallet ? (
-        <button onClick={connectMetaMask}>Conect</button>
+      <h1></h1>
+      {!isConnected ? (
+        <ConnectButton />
       ) : (
         <>
-          <div className="">{wallet.accounts[0]}</div>
+          <div className="text-white">{address}</div>
         </>
       )}
     </div>
