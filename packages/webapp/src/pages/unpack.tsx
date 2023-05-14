@@ -258,7 +258,7 @@ export default function Unpack() {
     functionName: "buyBooster",
     args: [],
     //@ts-ignore
-    value: 5841000000n,
+    value: data,
   });
 
   const { write } = useContractWrite(config);
