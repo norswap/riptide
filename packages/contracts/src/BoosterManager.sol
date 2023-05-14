@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 import "openzeppelin/access/Ownable.sol";
-import { UD60x18, ud, log10, ceil, convert } from "prb-math/UD60x18.sol";
+import { UD60x18, ud, log10, ceil, convert, UNIT } from "prb-math/UD60x18.sol";
 import "forge-std/console2.sol";
 
 import "./AssertionManager.sol";
@@ -151,9 +151,7 @@ contract BoosterManager is Ownable {
         else {
             // NOTE: this could be tweaked or made configurable
             uint256 supplyDiff = boostedConnection.totalSupply() - targetBaseSupply;
-            // e.g. if target is 1000, getting to 2000 total supply, would take price to
-            // `initial + 10^6 / (3*10^5) = inital + 3.3`, at 3000 it would be `initial + 13.3`
-            return initialBoosterPrice + supplyDiff * supplyDiff / 300_000;
+            return initialBoosterPrice + 1000_000 * supplyDiff * supplyDiff;
         }
 
     }
@@ -214,7 +212,10 @@ contract BoosterManager is Ownable {
         UD60x18[] memory decimalWeights = new UD60x18[](prices.length);
         UD60x18 totalWeight = ud(0);
         for (uint256 i = 0; i < prices.length; ++i) {
-            decimalWeights[i] = ONE + logMultiplier * log10(ud(prices[i]) / avg);
+            UD60x18 ratio = ud(prices[i]) / avg;
+            decimalWeights[i] = ratio < UNIT
+                ? ONE
+                : ONE + logMultiplier * log10(ratio);
             totalWeight = totalWeight + decimalWeights[i];
         }
 

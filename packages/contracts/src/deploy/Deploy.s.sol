@@ -18,17 +18,20 @@ contract DeployLocal is Script {
         vm.startBroadcast();
 
         uint16[3] memory numCardsPerRarity = [uint16(1), uint16(1), uint16(1)];
-        CardTypeInfo[] memory cardTypeInfos = new CardTypeInfo[](3);
+        CardTypeInfo[] memory cardTypeInfos = new CardTypeInfo[](6);
         // name, URL, supply, ID, rarity
-        cardTypeInfos[0] = CardTypeInfo("Alpha", "pic://alpha.png", 0, 0, Rarity.COMMON);
-        cardTypeInfos[1] = CardTypeInfo("Beta", "pic://beta.png", 0, 1, Rarity.UNUSUAL);
-        cardTypeInfos[2] = CardTypeInfo("Gamma", "pic://gamma.png", 0, 2, Rarity.RARE);
+        cardTypeInfos[0] = CardTypeInfo("Common 1", "pic://common1.png", 0, 0, Rarity.COMMON);
+        cardTypeInfos[1] = CardTypeInfo("Common 2", "pic://common2.png", 0, 1, Rarity.COMMON);
+        cardTypeInfos[2] = CardTypeInfo("Unusual 1", "pic://unusual1.png", 0, 2, Rarity.UNUSUAL);
+        cardTypeInfos[3] = CardTypeInfo("Unusual 2", "pic://unusual2.png", 0, 3, Rarity.UNUSUAL);
+        cardTypeInfos[4] = CardTypeInfo("Rare 1", "pic://rare1.png", 0, 4, Rarity.RARE);
+        cardTypeInfos[5] = CardTypeInfo("Rare 2", "pic://rare2.png", 0, 5, Rarity.RARE);
 
         BoosterManager.RarityClass[] memory rarityClasses = new BoosterManager.RarityClass[](3);
         // total items, items per booster, rarity ID
-        rarityClasses[0] = BoosterManager.RarityClass(1, 4, 0);
-        rarityClasses[1] = BoosterManager.RarityClass(1, 2, 1);
-        rarityClasses[2] = BoosterManager.RarityClass(1, 1, 2);
+        rarityClasses[0] = BoosterManager.RarityClass(2, 4, 0);
+        rarityClasses[1] = BoosterManager.RarityClass(2, 2, 1);
+        rarityClasses[2] = BoosterManager.RarityClass(2, 1, 2);
 
         CardCollection cardCollection = new CardCollection(numCardsPerRarity, cardTypeInfos);
 
@@ -47,12 +50,15 @@ contract DeployLocal is Script {
         boosterManager.setAssertionManager(assertionManager);
 
         uint256[][] memory prices = new uint256[][](3);
-        prices[0] = new uint256[](1);
+        prices[0] = new uint256[](2);
         prices[0][0] = 5 gwei;
-        prices[1] = new uint256[](1);
+        prices[0][1] = 5 gwei;
+        prices[1] = new uint256[](2);
         prices[1][0] = 10 gwei;
-        prices[2] = new uint256[](1);
+        prices[1][1] = 10 gwei;
+        prices[2] = new uint256[](2);
         prices[2][0] = 20 gwei;
+        prices[2][1] = 10 gwei;
         assertionManager.assertPrices(prices);
         assertionManager.confirmPrices();
 

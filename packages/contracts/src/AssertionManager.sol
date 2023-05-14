@@ -71,6 +71,10 @@ contract AssertionManager is Ownable {
             revert("AssertionManager: assertion not confirmed and should be reset");
 
         boosterManager.setWeightsFromPrices(prices);
+
+        // reset state (but not timestamp!)
+        delete prices;
+        assertionID = 0;
     }
 
     // Whether the current assertion (if any) is known to be correct, false if there is no assertion
