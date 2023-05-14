@@ -41,8 +41,19 @@ contract DeployLocal is Script {
 
         DemoAssertionEngine engine = new DemoAssertionEngine();
 
-        AssertionManager assertionManager = new AssertionManager(boosterManager, engine);
+        // For demo purposes, there is zero delay between the assertion and the confirmation.
+        AssertionManager assertionManager = new AssertionManager(boosterManager, engine, 0);
         boosterManager.setAssertionManager(assertionManager);
+
+        uint256[][] memory prices = new uint256[][](3);
+        prices[0] = new uint256[](1);
+        prices[0][0] = 5 gwei;
+        prices[1] = new uint256[](1);
+        prices[1][0] = 10 gwei;
+        prices[2] = new uint256[](1);
+        prices[2][0] = 20 gwei;
+        assertionManager.assertPrices(prices);
+        assertionManager.confirmPrices();
 
         console2.log("CardCollection address", address(cardCollection));
         console2.log("BoosterManager address", address(boosterManager));

@@ -2,8 +2,8 @@
 pragma solidity ^0.8.0;
 
 import "openzeppelin/token/ERC20/utils/SafeERC20.sol";
-import "uma-core/optimistic-oracle-v3/implementation/ClaimData.sol";
-import "uma-core/optimistic-oracle-v3/interfaces/OptimisticOracleV3Interface.sol";
+import "uma/ClaimData.sol";
+import "uma/OptimisticOracleV3Interface.sol";
 
 
 

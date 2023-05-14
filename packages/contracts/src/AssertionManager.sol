@@ -27,14 +27,13 @@ contract AssertionManager is Ownable {
     // Timestamp for the last update.
     uint256 public lastUpdate;
 
-    // NOTE: These can be made configurable.
-
     // Time to wait before updating the prices after the last update.
-    uint256 public updateInterval = 1 days;
+    uint256 public updateInterval;
 
-    constructor(BoosterManager boosterManager_, AssertionEngine engine_) Ownable() {
+    constructor(BoosterManager boosterManager_, AssertionEngine engine_, uint256 updateInterval_) Ownable() {
         boosterManager = boosterManager_;
         engine = engine_;
+        updateInterval = updateInterval_;
     }
 
     function assertPrices(uint256[][] calldata prices_) external {
@@ -44,7 +43,7 @@ contract AssertionManager is Ownable {
             revert("BoosterManager: too early to update prices");
         lastUpdate = block.timestamp;
 
-        boosterManager.validatePricesShape(prices);
+        boosterManager.validatePricesShape(prices_);
 
         if (prices.length != 0)
                 revert("BoosterManager: prices array should be empty, call resetAssertion first");

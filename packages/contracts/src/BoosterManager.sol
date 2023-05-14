@@ -3,6 +3,7 @@ pragma solidity ^0.8.19;
 
 import "openzeppelin/access/Ownable.sol";
 import { UD60x18, ud, log10, ceil, convert } from "prb-math/UD60x18.sol";
+import "forge-std/console2.sol";
 
 import "./AssertionManager.sol";
 import "./BoostedCollection.sol";
@@ -195,6 +196,8 @@ contract BoosterManager is Ownable {
         uint256 seed = randomness();
         uint16 numItems = rarityClasses[rarityID].totalItems;
         uint256 random = uint256(keccak256(abi.encodePacked(seed, seqNum))) % (numItems * 256);
+        console2.log("random", random, "block", block.number);
+        // TODO set weights
         WeightSlot memory slot = weights.array[rarityID][random / 256];
         return random % 256 <= slot.probabilitySplit ? slot.typeID1 : slot.typeID2;
     }
@@ -248,6 +251,7 @@ contract BoosterManager is Ownable {
         for (uint256 rarityID = 0; rarityID < prices.length; ++rarityID) {
             if (prices[rarityID].length != rarityClasses[rarityID].totalItems)
                 revert("BoosterManager: invalid number of items for rarity class");
+            console2.log("weights for rarity", rarityID);
             generatedWeights.array[rarityID] = weightsForRarityFromPrices(prices[rarityID]);
         }
 
@@ -264,19 +268,14 @@ contract BoosterManager is Ownable {
     }
 
     // Called by the assertion manager to set the weights based on the prices.
-    function setWeightsFromPrices(uint256[][] calldata prices) external onlyOwner {
+    function setWeightsFromPrices(uint256[][] calldata prices) external {
         if (msg.sender != address(assertionManager))
             revert("BoosterManager: only assertion manager can set weights");
 
-        if (prices.length != rarityClasses.length)
-            revert("BoosterManager: invalid number of rarity classes");
         WeightSlot[][] memory generatedWeights = weightsFromPrices(prices).array;
-        for (uint256 i = 0; i < prices.length; ++i) {
-            if (prices[i].length != rarityClasses[i].totalItems)
-                revert("BoosterManager: invalid number of items for rarity class");
+        for (uint256 i = 0; i < prices.length; ++i)
             for (uint256 j = 0; j < prices[i].length; ++j)
                 weights.array[i][j] = generatedWeights[i][j];
-        }
     }
 
     // =============================================================================================

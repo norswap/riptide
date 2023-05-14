@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.16;
 
-import "uma-core/optimistic-oracle-v3/interfaces/OptimisticOracleV3Interface.sol";
+import "uma/OptimisticOracleV3Interface.sol";
 
 // ***************************************
 // *    Minimum Viable OOV3 Integration  *

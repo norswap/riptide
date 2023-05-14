@@ -9,7 +9,7 @@ import "../AssertionEngine.sol";
  */
 contract DemoAssertionEngine is AssertionEngine {
 
-    uint256 private nextID = 0;
+    uint256 private nextID = 1;
 
     function assertPrices(uint256[][] calldata /* prices */) external override returns(uint256 assertionID) {
         return nextID++;
