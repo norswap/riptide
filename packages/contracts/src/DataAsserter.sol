@@ -5,8 +5,6 @@ import "openzeppelin/token/ERC20/utils/SafeERC20.sol";
 import "uma/ClaimData.sol";
 import "uma/OptimisticOracleV3Interface.sol";
 
-
-
 // This contract allows assertions on any form of data to be made using the UMA Optimistic Oracle V3 and stores the
 // proposed value so that it may be retrieved on chain. The dataId is intended to be an arbitrary value that uniquely
 // identifies a specific piece of information in the consuming contract and is replaceable. Similarly, any data
@@ -60,7 +58,6 @@ contract DataAsserter {
     // Data can be asserted many times with the same combination of arguments, resulting in unique assertionIds. This is
     // because the block.timestamp is included in the claim. The consumer contract must store the returned assertionId
     // identifiers to able to get the information using getData.
-    // TODO: determinate exactly what goes in dataID and data
     function assertDataFor(
         bytes32 dataId,
         bytes32 data,
@@ -79,7 +76,7 @@ contract DataAsserter {
         // information on how to construct the claim.
         assertionId = oo.assertTruth(
             abi.encodePacked(
-                "Data asserted: 0x", // in the example data is type bytes32 so we add the hex prefix 0x.
+                "Data asserted: 0x",
                 ClaimData.toUtf8Bytes(data),
                 " for dataId: 0x",
                 ClaimData.toUtf8Bytes(dataId),
