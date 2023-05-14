@@ -1,4 +1,4 @@
-const BoosterManagerAbi = [
+const BoosterManagerAbi: any = [
   {
     type: "event",
     name: "BoosterPurchased",
