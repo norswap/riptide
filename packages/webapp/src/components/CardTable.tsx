@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import { CardProps } from "src/interfaces/card-props";
 import { Dialog, Transition } from "@headlessui/react";
 import { motion } from "framer-motion";
+import { CardDetails } from "./card-details";
 
 interface CardTableProps {
   cards?: CardProps[];
@@ -108,8 +109,13 @@ export default function CardTable({ cards }: CardTableProps) {
                           </div>
                         </div>
                       </div>
-                      <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                        {/* Your content */}
+                      <div className="relative mt-6 flex-1 px-4 sm:px-6 text-gray-900">
+                        {selected != null && (
+                          <CardDetails
+                            card={cards[selected]}
+                            setSelected={setSelected}
+                          />
+                        )}
                       </div>
                     </div>
                   </Dialog.Panel>
@@ -119,16 +125,6 @@ export default function CardTable({ cards }: CardTableProps) {
           </div>
         </Dialog>
       </Transition.Root>
-
-      {/* {selected != null && (
-        <div className="w-[800px] h-100 bg-teal-600">
-          <CardDetails
-            card={cards[selected]}
-            setSelected={setSelected}
-            {...cards[selected]}
-          />
-        </div>
-      )} */}
     </>
   );
 }
