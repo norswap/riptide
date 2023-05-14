@@ -7,6 +7,8 @@ import "forge-std/console2.sol";
 
 import "./AssertionManager.sol";
 import "./BoostedCollection.sol";
+import "./DirectLinkVRF.sol";
+
 
 /**
  * The BoosterManager contract forms the core of RIPTIDE, it is responsible for generating booster
@@ -178,6 +180,10 @@ contract BoosterManager is Ownable {
     function randomness() internal view returns(uint256) {
         return uint256(blockhash(block.number - 1));
     }
+    
+    //DirectLinkVRF private directLinkVRF;
+    // then just call directLinkVRF.requestRandomWords(uint32 callbackGasLimituint16 requestConfirmations  uint32 numWords)
+    // instead of randomness()
 
     // Returns a random item of the requested rarity based on the booster manager's parameters.
     function pickItem(uint8 rarityID) internal returns(uint16) {
