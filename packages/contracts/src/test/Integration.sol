@@ -3,7 +3,6 @@ pragma solidity ^0.8.19;
 
 import "forge-std/Test.sol";
 import "forge-std/console2.sol";
-import { hoax } from "forge-std/StdCheats.sol";
 import { ud } from "prb-math/UD60x18.sol";
 
 import "../demo/CardCollection.sol";
@@ -69,7 +68,7 @@ contract Integration is Test {
     function testIntegration() public {
         assertEq(boosterManager.boosterPrice(), 5 gwei);
         vm.deal(msg.sender, 5 ether);
-        vm.hoax(Alice, 5 ether);
+        hoax(Alice, 5 ether);
         vm.expectEmit(true, true, false, false, address(boosterManager));
         emit BoosterPurchased(Alice, 5 gwei, new uint256[](4));
         boosterManager.buyBooster{value: 5 gwei}();
